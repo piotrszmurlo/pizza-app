@@ -1,13 +1,26 @@
 .Login-header{
   background-color: brown;
   color: beige;
+  font-size: 40px;
 }
 
-.usernamefield{
+.Login{
+  font-color: brown;
   font-size: 10px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .field{
-  padding: 5px 10px;;
+  height: 8px;
+  width: 80px;
+  font-size: 7px;
+}
+
+.Login{
+  background-color: blanchedalmond;
+  min-height: 50vh;
+  align-items: center;
+  width: 60vh;
+  margin-inline: 65vh;
+  
 }

@@ -1,14 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { Component } from 'react';
 import margharita from './images/margharita.png'
 import pepperoni from './images/pepperoni.png'
 import error from './images/error.jpg'
+import logo from './images/logo.jpg'
 import './components/ProductCard.css'
 import './components/Button.css'
 import './components/Login.css'
 import propTypes from 'prop-types'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import './bootstrap.css'
 class App extends Component {
   render() {
     return (
@@ -16,13 +18,15 @@ class App extends Component {
       <div className="App">
         <Router>
           <>
+              <HeaderComponent/>
             <Switch>
-              <Route path="/" exact component={MenuComponent}/>
+              <Route path="/" exact component={WelcomeComponent}/>
               <Route path="/menu" component={MenuComponent}/>
               <Route path="/login" component={LoginComponent}/>
               <Route component={ErrorComponent}/>
               {/* <Route path="/basket" component={BasketComponent}/> */}
             </Switch>
+            <FooterComponent></FooterComponent>
           </>
         </Router>
       </div>
@@ -31,6 +35,17 @@ class App extends Component {
 }
 
 export default App;
+
+class WelcomeComponent extends Component {
+  render() {
+    return(
+      <div>
+        Welcome to Pepe's Pizzeria
+        
+      </div>
+    )
+  }
+}
 
 class MenuComponent extends Component {
   // constructor(props) {
@@ -128,8 +143,8 @@ class LoginComponent extends Component {
   render(){
     return (
      <div className="Login">
-         <h3 className='Login-header'>Logowanie</h3><br /><br />
-        User Name: <input type="text" name="username" value={this.state.username} onChange={this.handleChange} className="field"/><br />
+        <h3 className='Login-header'>Logowanie</h3><br /><br />
+        Username: <input type="text" name="username" value={this.state.username} onChange={this.handleChange} className="field"/><br />
         Password: <input type="password" name="password" value={this.state.password} onChange={this.handleChange} className="field"/><br /><br />
         <button onClick={this.loginClicked} className="button">Login</button>
     </div>
@@ -137,4 +152,35 @@ class LoginComponent extends Component {
   }
 
 
+}
+class HeaderComponent extends Component {
+  render() {
+    return(
+      <header>
+        <nav className="navbar navbar-expand-md navbar-light bg-light">
+          <div><a href="http://www.pepespizzaaa.com"className="navbar-brand">
+            <img src={logo} width="50" height="50" alt=""></img>
+            Pepe's Pizza</a>
+          </div>
+          <ul className="navbar-nav">
+            <li><Link className="nav-link" to="/menu">Menu</Link></li>
+          </ul>
+          <ul className="navbar-nav navbar-collapse justify-content-end">
+            <li><Link className="nav-link" to="/basket">Basket</Link></li>
+            <li><Link className="nav-link" to="/login">Login</Link></li>
+            <li><Link className="nav-link" to="/">Logout</Link></li>
+          </ul>
+        </nav>
+      </header>
+    )
+  }
+}
+class FooterComponent extends Component {
+  render() {
+    return(
+      <footer className="footer">
+        <span className="text-muted"> All Rights Reserved 2021 @pepespizza</span>
+      </footer>
+    )
+  }
 }
