@@ -1,0 +1,45 @@
+
+.header{
+  font-size: large;
+  color: rgb(179, 6, 6);
+}
+
+.name{
+font-size: smaller;
+font-style: italic;
+color: rgb(179, 6, 6);
+}
+
+.ingredients{
+font-size: xx-small;
+font-style: italic;
+color: rgb(179, 6, 6);
+}
+
+.picture {
+  height: 150px;
+  width: 150px;
+}
+.productcard{
+  border-color: brown;
+  border-radius: 5px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .picture {
+    animation: picture-spin infinite 20s linear;
+  }
+}
+
+@keyframes picture-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.field{
+  size: 10 10;
+}
