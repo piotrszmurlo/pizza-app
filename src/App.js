@@ -4,6 +4,7 @@ import margharita from './images/margharita.png'
 import pepperoni from './images/pepperoni.png'
 import error from './images/error.jpg'
 import logo from './images/logo.jpg'
+import pizzaiolo from './images/pizzaiolo.jpg'
 import './components/ProductCard.css'
 import './components/Button.css'
 import './components/Login.css'
@@ -40,6 +41,7 @@ class WelcomeComponent extends Component {
   render() {
     return(
       <div>
+        <img src={pizzaiolo}></img>
         Welcome to Pepe's Pizzeria
         
       </div>
@@ -87,7 +89,7 @@ class Button extends Component {
   render() {
     return(
       <div>
-        <button className="button">Add to cart</button>
+        <button className="btn btn-danger">Add to cart</button>
         
       </div>
     )
@@ -158,17 +160,17 @@ class HeaderComponent extends Component {
     return(
       <header>
         <nav className="navbar navbar-expand-md navbar-light bg-light">
-          <div><a href="http://www.pepespizzaaa.com"className="navbar-brand">
+          <div><a href="localhost:3000/" className="navbar-brand">
             <img src={logo} width="50" height="50" alt=""></img>
-            Pepe's Pizza</a>
+            <Link className="nav-link" to="/">Pepe's Pizza</Link></a>
           </div>
           <ul className="navbar-nav">
-            <li><Link className="nav-link" to="/menu">Menu</Link></li>
+            <Link className="nav-link" to="/menu">Menu</Link>
           </ul>
           <ul className="navbar-nav navbar-collapse justify-content-end">
-            <li><Link className="nav-link" to="/basket">Basket</Link></li>
-            <li><Link className="nav-link" to="/login">Login</Link></li>
-            <li><Link className="nav-link" to="/">Logout</Link></li>
+            <Link className="nav-link" to="/basket">Basket</Link>
+            <Link className="nav-link" to="/login">Login</Link>
+            <Link className="nav-link" to="/">Logout</Link>
           </ul>
         </nav>
       </header>
