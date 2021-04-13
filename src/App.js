@@ -25,7 +25,7 @@ class App extends Component {
               <Route path="/menu" component={MenuComponent}/>
               <Route path="/login" component={LoginComponent}/>
               <Route component={ErrorComponent}/>
-              {/* <Route path="/basket" component={BasketComponent}/> */}
+              <Route path="/basket" component={BasketComponent}/>
             </Switch>
             <FooterComponent></FooterComponent>
           </>
@@ -43,6 +43,18 @@ class WelcomeComponent extends Component {
       <div>
         <img src={pizzaiolo}></img>
         Welcome to Pepe's Pizzeria
+        
+      </div>
+    )
+  }
+}
+
+class BasketComponent {
+  render() {
+    return(
+      <div>
+        <img src={pizzaiolo}></img>
+        Basket
         
       </div>
     )
@@ -104,8 +116,7 @@ class ProductCard extends Component {
         <img src={this.props.picture} className='picture' alt='pizza' ></img>
         <p className='name'>{this.props.name}</p>
         <p className='ingredients'>Ingredients: {this.props.ingredients}</p>
-        <Button></Button>
-        <a className='price'>{this.props.price}</a>
+        <Button/><a className='price'>{this.props.price}</a>
 
       </div>
     )
