@@ -2,9 +2,10 @@ import './App.css';
 import React, { Component } from 'react';
 import margharita from './images/margharita.png'
 import pepperoni from './images/pepperoni.png'
-import error from './images/error.jpg'
+import error_image from './images/error.jpg'
 import logo from './images/logo.jpg'
 import pizzaiolo from './images/pizzaiolo.jpg'
+import basket_image from './images/basket.png'
 import './components/ProductCard.css'
 import './components/Button.css'
 import './components/Login.css'
@@ -24,8 +25,12 @@ class App extends Component {
               <Route path="/" exact component={WelcomeComponent}/>
               <Route path="/menu" component={MenuComponent}/>
               <Route path="/login" component={LoginComponent}/>
+              <Route path="/basket" component={BasketComponent}/> 
               <Route component={ErrorComponent}/>
+<<<<<<< HEAD
               <Route path="/basket" component={BasketComponent}/>
+=======
+>>>>>>> 127f12efc41777b24e67ec60ba8ecdd6a40c20f7
             </Switch>
             <FooterComponent></FooterComponent>
           </>
@@ -92,7 +97,7 @@ class ErrorComponent extends Component {
     return(
       <div>
         <h3>404: Page not found error</h3>
-        <img src={error} className='error_image' alt='error' ></img>
+        <img src={error_image} className='error_image' alt='error' ></img>
       </div>
     )
   }
@@ -163,9 +168,19 @@ class LoginComponent extends Component {
     </div>
       )
   }
-
-
 }
+
+class BasketComponent extends Component {
+  render()
+  {
+    return(
+      <div className="Basket">
+        <img src={basket_image} className='basket_image' alt='basket' ></img>
+      </div>  
+    )
+  }
+}
+
 class HeaderComponent extends Component {
   render() {
     return(
@@ -197,3 +212,4 @@ class FooterComponent extends Component {
     )
   }
 }
+
