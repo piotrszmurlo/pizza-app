@@ -14,6 +14,7 @@ import propTypes from 'prop-types'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import {Link} from 'react-router-dom';
 import './bootstrap.css'
+
 class App extends Component {
   render() {
     return (
@@ -68,7 +69,19 @@ class MenuComponent extends Component {
       <tr>
         <td><ProductCard name='Margharita' ingredients='ciasto, sos, ser' picture={margharita} price="20"></ProductCard></td>
         <td><ProductCard name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+        <td><ProductCard name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
       </tr>
+      <tr>
+        <td><ProductCard name='Margharita' ingredients='ciasto, sos, ser' picture={margharita} price="20"></ProductCard></td>
+        <td><ProductCard name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+        <td><ProductCard name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+      </tr>
+      <tr>
+        <td><ProductCard name='Margharita' ingredients='ciasto, sos, ser' picture={margharita} price="20"></ProductCard></td>
+        <td><ProductCard name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+        <td><ProductCard name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+      </tr>
+        
       </table>
       </center>
         
@@ -91,7 +104,6 @@ class Button extends Component {
     return(
       <div>
         <button className="btn btn-danger">Add to cart</button>
-        
       </div>
     )
   }
@@ -102,11 +114,17 @@ class ProductCard extends Component {
   render() {
     return(
       <div className="productcard">
-        <img src={this.props.picture} className='picture' alt='pizza' ></img>
-        <p className='name'>{this.props.name}</p>
-        <p className='ingredients'>Ingredients: {this.props.ingredients}</p>
-        <Button/><a className='price'>{this.props.price}</a>
-
+          <div className='menu-button'>
+            <button className="btn btn-danger">Add to cart</button>
+            <a className='price'>{this.props.price}$</a>
+          </div>
+        <div className='product-card-in'>
+          <img src={this.props.picture} className='picture' alt='pizza' ></img>
+        </div>
+          <div>
+          <p className='name'>{this.props.name}</p>
+          <p className='ingredients'>Ingredients: {this.props.ingredients}</p>
+          </div>
       </div>
     )
   }
@@ -122,7 +140,7 @@ class LoginComponent extends Component {
   constructor(props){
     super(props)
     this.state = {
-      username: 'Your name',
+      username: '',
       password: ''
     }
     this.handleChange= this.handleChange.bind(this)
@@ -144,11 +162,15 @@ class LoginComponent extends Component {
 
   render(){
     return (
-     <div className="card">
+      <div className='span2'>
+        <div className='login-outer-card'>
+     <div className="login-card">
         <h3 className='Login-header'>Logowanie</h3><br /><br />
-        Username: <input type="text" name="username" value={this.state.username} onChange={this.handleChange} className="field"/><br />
-        Password: <input type="password" name="password" value={this.state.password} onChange={this.handleChange} className="field"/><br /><br />
-        <button onClick={this.loginClicked} className="btn btn-danger">Login</button>
+        Username: <input  type="text" name="username" placeholder="input your username" onChange={this.handleChange} className="form-control"/><br />
+        Password: <input type="password" name="password" placeholder="••••••••" value={this.state.password} onChange={this.handleChange} className="form-control"/><br /><br />
+          <button onClick={this.loginClicked} className="btn btn-danger btn-lg">Login</button>
+    </div>
+    </div>
     </div>
       )
   }
@@ -159,7 +181,7 @@ class BasketComponent extends Component {
   {
     return(
       <div className="Basket">
-        <img src={basket_image} className='basket_image' alt='basket' ></img>
+        <img src={basket_image} className='basket_image' alt='basket'></img>
 
       </div>  
     )
@@ -169,12 +191,13 @@ class BasketComponent extends Component {
 class HeaderComponent extends Component {
   render() {
     return(
+      <div className='header1'>
       <header>
         <nav className="navbar navbar-expand-md navbar-light bg-light">
           <div><a href="localhost:3000/" className="navbar-brand">
             <img src={logo} width="50" height="50" alt=""></img>
-            <Link className="nav-link" to="/">Pepe's Pizza</Link></a>
-          </div>
+            </a></div>
+            <Link className="nav-link" to="/">Pepe's Pizza</Link>
           <ul className="navbar-nav">
             <Link className="nav-link" to="/menu">Menu</Link>
           </ul>
@@ -185,6 +208,7 @@ class HeaderComponent extends Component {
           </ul>
         </nav>
       </header>
+      </div>
     )
   }
 }
