@@ -16,7 +16,6 @@ import './bootstrap.css'
 class App extends Component {
   render() {
     return (
-      
       <div className="App">
         <Router>
           <>
@@ -27,10 +26,6 @@ class App extends Component {
               <Route path="/login" component={LoginComponent}/>
               <Route path="/basket" component={BasketComponent}/> 
               <Route component={ErrorComponent}/>
-<<<<<<< HEAD
-              <Route path="/basket" component={BasketComponent}/>
-=======
->>>>>>> 127f12efc41777b24e67ec60ba8ecdd6a40c20f7
             </Switch>
             <FooterComponent></FooterComponent>
           </>
@@ -46,20 +41,8 @@ class WelcomeComponent extends Component {
   render() {
     return(
       <div>
-        <img src={pizzaiolo}></img>
+        <img src={pizzaiolo} className='welcome_image' alt='welcome'></img>
         Welcome to Pepe's Pizzeria
-        
-      </div>
-    )
-  }
-}
-
-class BasketComponent {
-  render() {
-    return(
-      <div>
-        <img src={pizzaiolo}></img>
-        Basket
         
       </div>
     )
@@ -160,11 +143,11 @@ class LoginComponent extends Component {
 
   render(){
     return (
-     <div className="Login">
+     <div className="card">
         <h3 className='Login-header'>Logowanie</h3><br /><br />
         Username: <input type="text" name="username" value={this.state.username} onChange={this.handleChange} className="field"/><br />
         Password: <input type="password" name="password" value={this.state.password} onChange={this.handleChange} className="field"/><br /><br />
-        <button onClick={this.loginClicked} className="button">Login</button>
+        <button onClick={this.loginClicked} className="btn btn-danger">Login</button>
     </div>
       )
   }
