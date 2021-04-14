@@ -14,6 +14,7 @@ import propTypes from 'prop-types'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import {Link} from 'react-router-dom';
 import './bootstrap.css'
+import { render } from '@testing-library/react';
 class App extends Component {
   render() {
     return (
@@ -106,7 +107,7 @@ class ProductCard extends Component {
         <img src={this.props.picture} className='picture' alt='pizza' ></img>
         <p className='name'>{this.props.name}</p>
         <p className='ingredients'>Ingredients: {this.props.ingredients}</p>
-        <Button></Button>
+        <Button onClick={BasketComponent.add_to_basket} className='MenuButton'></Button>
         <a className='price'>{this.props.price}</a>
 
       </div>
@@ -156,13 +157,55 @@ class LoginComponent extends Component {
   }
 }
 
+
 class BasketComponent extends Component {
+  constructor(){
+    super();
+
+    this.state = {
+      menu : [][5]
+    }
+    this.add_to_basket = this.add_to_basket.bind(ProductCard);
+  }
+  add_to_basket(ProductCard)
+  {
+    this.setState(this)
+      {
+        let menu_length = this.state.menu.length;
+        let flag = 1;
+        for (let i=0; i<menu_length; i++){
+          if (this.state.menu[i][1]==ProductCard.props.name){
+          flag=0;
+          this.state.menu[i][5]++;
+          }
+        }
+        if (flag)
+        {
+          this.state.menu[menu_length + 1]=[ProductCard.props.name,
+            ProductCard.props.ingredients,
+            ProductCard.props.picture,
+            ProductCard.props.price,
+            1]
+        }
+      }
+      console.log('aaaa')
+  }
+create_basket()
+{
+    let menu_length = this.state.menu.length
+    for (let i=0; i<menu_length; i++){
+      
+    
+    }  
+  }
+
+
   render()
   {
     return(
       <div className="Basket">
         <img src={basket_image} className='basket_image' alt='basket' ></img>
-
+        <td><ProductCard name={this.state.menu[0][0]} ingredients={this.state.menu[0][1]} picture={this.state.menu[0][2]} price={this.state.menu[0][3]}></ProductCard></td>
       </div>  
     )
   }
