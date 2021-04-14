@@ -14,11 +14,7 @@ import propTypes from 'prop-types'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import {Link} from 'react-router-dom';
 import './bootstrap.css'
-<<<<<<< HEAD
 import { render } from '@testing-library/react';
-=======
-
->>>>>>> 72f88199d0c816a4a983f6dd3a86bf157658a757
 class App extends Component {
   render() {
     return (
@@ -109,21 +105,12 @@ class Button extends Component {
 class ProductCard extends Component {
   constructor(props) {
     super(props)
-    this.add_to_cart = this.addToCart.bind(this)
   }
   render() {
     return(
       <div className="productcard">
-<<<<<<< HEAD
-        <img src={this.props.picture} className='picture' alt='pizza' ></img>
-        <p className='name'>{this.props.name}</p>
-        <p className='ingredients'>Ingredients: {this.props.ingredients}</p>
-        <Button onClick={BasketComponent.add_to_basket} className='MenuButton'></Button>
-        <a className='price'>{this.props.price}</a>
-
-=======
           <div className='menu-button'>
-            <button className="btn btn-danger" onClick={this.add_to_cart}>Add to cart</button>
+            <button className="btn btn-danger" onClick={BasketComponent.addToBasket} value={this.props.id}>Add to cart</button>
             <a className='price'>{this.props.price}$</a>
           </div>
         <div className='product-card-in'>
@@ -133,12 +120,8 @@ class ProductCard extends Component {
           <p className='name'>{this.props.name}</p>
           <p className='ingredients'>Ingredients: {this.props.ingredients}</p>
           </div>
->>>>>>> 72f88199d0c816a4a983f6dd3a86bf157658a757
       </div>
     )
-  }
-  addToCart() {
-    console.log('dodane')
   }
 }
 ProductCard.propTypes = {name: propTypes.string.isRequired}
@@ -194,33 +177,34 @@ class BasketComponent extends Component {
   constructor(){
     super();
 
-    this.state = {
-      menu : [][5]
-    }
-    this.add_to_basket = this.add_to_basket.bind(ProductCard);
+    // this.state = {
+    //   menu : [][5]
+    // }
+    this.addToBasket = this.addToBasket.bind(this);
   }
-  add_to_basket(ProductCard)
+  static addToBasket(event)
   {
-    this.setState(this)
-      {
-        let menu_length = this.state.menu.length;
-        let flag = 1;
-        for (let i=0; i<menu_length; i++){
-          if (this.state.menu[i][1]==ProductCard.props.name){
-          flag=0;
-          this.state.menu[i][5]++;
-          }
-        }
-        if (flag)
-        {
-          this.state.menu[menu_length + 1]=[ProductCard.props.name,
-            ProductCard.props.ingredients,
-            ProductCard.props.picture,
-            ProductCard.props.price,
-            1]
-        }
-      }
-      console.log('aaaa')
+    console.log(event.target.value)
+    // this.setState(
+      // {
+      //   let menu_length = this.state.menu.length;
+      //   let flag = 1;
+      //   for (let i=0; i<menu_length; i++){
+      //     if (this.state.menu[i][1]==ProductCard.props.name){
+      //     flag=0;
+      //     this.state.menu[i][5]++;
+      //     }
+      //   }
+      //   if (flag)
+      //   {
+      //     this.state.menu[menu_length + 1]=[ProductCard.props.name,
+      //       ProductCard.props.ingredients,
+      //       ProductCard.props.picture,
+      //       ProductCard.props.price,
+      //       1]
+      //   }
+      // }
+      
   }
 create_basket()
 {
@@ -236,13 +220,8 @@ create_basket()
   {
     return(
       <div className="Basket">
-<<<<<<< HEAD
         <img src={basket_image} className='basket_image' alt='basket' ></img>
         <td><ProductCard name={this.state.menu[0][0]} ingredients={this.state.menu[0][1]} picture={this.state.menu[0][2]} price={this.state.menu[0][3]}></ProductCard></td>
-=======
-        <img src={basket_image} className='basket_image' alt='basket'></img>
-
->>>>>>> 72f88199d0c816a4a983f6dd3a86bf157658a757
       </div>  
     )
   }
