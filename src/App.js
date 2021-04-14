@@ -14,11 +14,14 @@ import propTypes from 'prop-types'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import {Link} from 'react-router-dom';
 import './bootstrap.css'
+<<<<<<< HEAD
 import { render } from '@testing-library/react';
+=======
+
+>>>>>>> 72f88199d0c816a4a983f6dd3a86bf157658a757
 class App extends Component {
   render() {
     return (
-      
       <div className="App">
         <Router>
           <>
@@ -44,7 +47,7 @@ class WelcomeComponent extends Component {
   render() {
     return(
       <div>
-        <img src={pizzaiolo}></img>
+        <img src={pizzaiolo} className='welcome_image' alt='welcome'></img>
         Welcome to Pepe's Pizzeria
         
       </div>
@@ -53,14 +56,6 @@ class WelcomeComponent extends Component {
 }
 
 class MenuComponent extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state ={
-  //     productcards=[
-  //       {id: 1, }
-  //     ]
-  //   }
-  // }
   render() {
     return(
       <div>
@@ -68,9 +63,21 @@ class MenuComponent extends Component {
       <center>
       <table  cellPadding="8" cellSpacing="0" colspan="3" width="150" height="150">
       <tr>
-        <td><ProductCard name='Margharita' ingredients='ciasto, sos, ser' picture={margharita} price="20"></ProductCard></td>
-        <td><ProductCard name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+        <td><ProductCard id={1} name='Margharita' ingredients='ciasto, sos, ser' picture={margharita} price="20"></ProductCard></td>
+        <td><ProductCard id={2} name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+        <td><ProductCard id={3} name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
       </tr>
+      <tr>
+        <td><ProductCard id={4} name='Margharita' ingredients='ciasto, sos, ser' picture={margharita} price="20"></ProductCard></td>
+        <td><ProductCard id={5} name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+        <td><ProductCard id={6} name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+      </tr>
+      <tr>
+        <td><ProductCard id={7} name='Margharita' ingredients='ciasto, sos, ser' picture={margharita} price="20"></ProductCard></td>
+        <td><ProductCard id={8} name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+        <td><ProductCard id={9} name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+      </tr>
+        
       </table>
       </center>
         
@@ -93,7 +100,6 @@ class Button extends Component {
     return(
       <div>
         <button className="btn btn-danger">Add to cart</button>
-        
       </div>
     )
   }
@@ -101,23 +107,45 @@ class Button extends Component {
 
 
 class ProductCard extends Component {
+  constructor(props) {
+    super(props)
+    this.add_to_cart = this.add_to_cart.bind(this)
+  }
   render() {
     return(
       <div className="productcard">
+<<<<<<< HEAD
         <img src={this.props.picture} className='picture' alt='pizza' ></img>
         <p className='name'>{this.props.name}</p>
         <p className='ingredients'>Ingredients: {this.props.ingredients}</p>
         <Button onClick={BasketComponent.add_to_basket} className='MenuButton'></Button>
         <a className='price'>{this.props.price}</a>
 
+=======
+          <div className='menu-button'>
+            <button className="btn btn-danger" onClick={this.add_to_cart}>Add to cart</button>
+            <a className='price'>{this.props.price}$</a>
+          </div>
+        <div className='product-card-in'>
+          <img src={this.props.picture} className='picture' alt='pizza' ></img>
+        </div>
+          <div>
+          <p className='name'>{this.props.name}</p>
+          <p className='ingredients'>Ingredients: {this.props.ingredients}</p>
+          </div>
+>>>>>>> 72f88199d0c816a4a983f6dd3a86bf157658a757
       </div>
     )
+  }
+  addToCart() {
+    console.log('dodane')
   }
 }
 ProductCard.propTypes = {name: propTypes.string.isRequired}
 ProductCard.propTypes = {ingredients: propTypes.string.isRequired}
 ProductCard.propTypes = {picture: propTypes.string.isRequired}
 ProductCard.propTypes = {price: propTypes.string.isRequired}
+ProductCard.propTypes = {id: propTypes.number.isRequired}
 
 
 class LoginComponent extends Component {
@@ -125,7 +153,7 @@ class LoginComponent extends Component {
   constructor(props){
     super(props)
     this.state = {
-      username: 'Your name',
+      username: '',
       password: ''
     }
     this.handleChange= this.handleChange.bind(this)
@@ -147,11 +175,15 @@ class LoginComponent extends Component {
 
   render(){
     return (
-     <div className="Login">
+      <div className='span2'>
+        <div className='login-outer-card'>
+     <div className="login-card">
         <h3 className='Login-header'>Logowanie</h3><br /><br />
-        Username: <input type="text" name="username" value={this.state.username} onChange={this.handleChange} className="field"/><br />
-        Password: <input type="password" name="password" value={this.state.password} onChange={this.handleChange} className="field"/><br /><br />
-        <button onClick={this.loginClicked} className="button">Login</button>
+        Username: <input  type="text" name="username" placeholder="input your username" onChange={this.handleChange} className="form-control"/><br />
+        Password: <input type="password" name="password" placeholder="••••••••" value={this.state.password} onChange={this.handleChange} className="form-control"/><br /><br />
+          <button onClick={this.loginClicked} className="btn btn-danger btn-lg">Login</button>
+    </div>
+    </div>
     </div>
       )
   }
@@ -204,8 +236,13 @@ create_basket()
   {
     return(
       <div className="Basket">
+<<<<<<< HEAD
         <img src={basket_image} className='basket_image' alt='basket' ></img>
         <td><ProductCard name={this.state.menu[0][0]} ingredients={this.state.menu[0][1]} picture={this.state.menu[0][2]} price={this.state.menu[0][3]}></ProductCard></td>
+=======
+        <img src={basket_image} className='basket_image' alt='basket'></img>
+
+>>>>>>> 72f88199d0c816a4a983f6dd3a86bf157658a757
       </div>  
     )
   }
@@ -214,12 +251,13 @@ create_basket()
 class HeaderComponent extends Component {
   render() {
     return(
+      <div className='header1'>
       <header>
         <nav className="navbar navbar-expand-md navbar-light bg-light">
           <div><a href="localhost:3000/" className="navbar-brand">
             <img src={logo} width="50" height="50" alt=""></img>
-            <Link className="nav-link" to="/">Pepe's Pizza</Link></a>
-          </div>
+            </a></div>
+            <Link className="nav-link" to="/">Pepe's Pizza</Link>
           <ul className="navbar-nav">
             <Link className="nav-link" to="/menu">Menu</Link>
           </ul>
@@ -230,6 +268,7 @@ class HeaderComponent extends Component {
           </ul>
         </nav>
       </header>
+      </div>
     )
   }
 }
