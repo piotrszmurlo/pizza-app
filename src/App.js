@@ -52,14 +52,6 @@ class WelcomeComponent extends Component {
 }
 
 class MenuComponent extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state ={
-  //     productcards=[
-  //       {id: 1, }
-  //     ]
-  //   }
-  // }
   render() {
     return(
       <div>
@@ -67,19 +59,19 @@ class MenuComponent extends Component {
       <center>
       <table  cellPadding="8" cellSpacing="0" colspan="3" width="150" height="150">
       <tr>
-        <td><ProductCard name='Margharita' ingredients='ciasto, sos, ser' picture={margharita} price="20"></ProductCard></td>
-        <td><ProductCard name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
-        <td><ProductCard name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+        <td><ProductCard id={1} name='Margharita' ingredients='ciasto, sos, ser' picture={margharita} price="20"></ProductCard></td>
+        <td><ProductCard id={2} name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+        <td><ProductCard id={3} name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
       </tr>
       <tr>
-        <td><ProductCard name='Margharita' ingredients='ciasto, sos, ser' picture={margharita} price="20"></ProductCard></td>
-        <td><ProductCard name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
-        <td><ProductCard name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+        <td><ProductCard id={4} name='Margharita' ingredients='ciasto, sos, ser' picture={margharita} price="20"></ProductCard></td>
+        <td><ProductCard id={5} name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+        <td><ProductCard id={6} name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
       </tr>
       <tr>
-        <td><ProductCard name='Margharita' ingredients='ciasto, sos, ser' picture={margharita} price="20"></ProductCard></td>
-        <td><ProductCard name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
-        <td><ProductCard name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+        <td><ProductCard id={7} name='Margharita' ingredients='ciasto, sos, ser' picture={margharita} price="20"></ProductCard></td>
+        <td><ProductCard id={8} name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+        <td><ProductCard id={9} name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
       </tr>
         
       </table>
@@ -111,11 +103,15 @@ class Button extends Component {
 
 
 class ProductCard extends Component {
+  constructor(props) {
+    super(props)
+    this.add_to_cart = this.add_to_cart.bind(this)
+  }
   render() {
     return(
       <div className="productcard">
           <div className='menu-button'>
-            <button className="btn btn-danger">Add to cart</button>
+            <button className="btn btn-danger" onClick={this.add_to_cart}>Add to cart</button>
             <a className='price'>{this.props.price}$</a>
           </div>
         <div className='product-card-in'>
@@ -128,11 +124,15 @@ class ProductCard extends Component {
       </div>
     )
   }
+  addToCart() {
+    console.log('dodane')
+  }
 }
 ProductCard.propTypes = {name: propTypes.string.isRequired}
 ProductCard.propTypes = {ingredients: propTypes.string.isRequired}
 ProductCard.propTypes = {picture: propTypes.string.isRequired}
 ProductCard.propTypes = {price: propTypes.string.isRequired}
+ProductCard.propTypes = {id: propTypes.number.isRequired}
 
 
 class LoginComponent extends Component {
