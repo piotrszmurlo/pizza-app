@@ -27,6 +27,7 @@ class App extends Component {
               <Route path="/" exact component={WelcomeComponent}/>
               <Route path="/menu" component={MenuComponent}/>
               <Route path="/login" component={LoginComponent}/>
+              <Route path="/signup" component={SignupComponent}/>
               <Route path="/basket" component={BasketComponent}/> 
               <Route component={ErrorComponent}/>
             </Switch>
@@ -141,7 +142,7 @@ class LoginComponent extends Component {
     }
     this.handleChange= this.handleChange.bind(this)
     this.loginClicked = this.loginClicked.bind(this)
-    this.signupClicked = this.signupClicked.bind(this)
+    this.newRegistration = this.newRegistration.bind(this)
   }
   
   loginClicked(){
@@ -156,28 +157,73 @@ class LoginComponent extends Component {
         [event.target.name]:
         event.target.value})
   }
+  newRegistration() {
+    this.props.history.push("/signup")
+  }
+
+
 
   render(){
     return (
       <div className='span2'>
-        <div className='login-outer-card'>
+      <div className='login-outer-card'>
      <div className="login-card">
         <h3 className='Login-header'>Logowanie</h3><br /><br />
         Username: <input  type="text" name="username" placeholder="input your username" onChange={this.handleChange} className="form-control"/><br />
         Password: <input type="password" name="password" placeholder="••••••••" value={this.state.password} onChange={this.handleChange} className="form-control"/><br /><br />
           <button onClick={this.loginClicked} className="btn btn-danger btn-lg">Login</button>
           <div className='signup'>
-          <button onClick={this.signupClicked} className="btn btn-danger btn-lg">Sign up</button></div>
+          <button onClick={this.newRegistration} className="btn btn-danger btn-lg">Sign up</button></div>
     </div>
     </div>
     </div>
       )
   }
-  signupClicked() {
-    this.props.history.push("/")
-  }
 }
 
+
+class SignupComponent extends Component {
+
+  constructor(props){
+    super(props)
+    this.state = {
+      username: '',
+      password: '',
+      address: '',
+    }
+    this.handleRegistration= this.handleRegistration.bind(this)
+    this.signupClicked = this.signupClicked.bind(this)
+  }
+  
+  signupClicked(){
+    this.props.history.push("/menu")
+    console.log('Trying to signup')
+  }
+
+  handleRegistration(event){
+    console.log(this.state);
+    this.setState(
+      {
+        [event.target.name]:
+        event.target.value})
+  }
+
+  render(){
+    return (
+    <div className='span2'>
+    <div className='signup-outer-card'>
+     <div className="signup-card">
+        <h3 className='singup-header'>Registration</h3><br /><br />
+        Username: <input  type="text" name="username" placeholder="input your username" onChange={this.handleRegistration} className="form-control"/><br />
+        Password: <input type="password" name="password" placeholder="••••••••" value={this.state.password} onChange={this.handleRegistration} className="form-control"/><br />
+        Address: <input  type="text" name="address" placeholder="input your address" onChange={this.handleRegistration} className="form-control"/><br /><br />
+          <button onClick={this.signupClicked} className="btn btn-danger btn-lg">Signup</button>
+    </div>
+    </div>
+    </div>
+  )
+  }
+}
 
 class BasketComponent extends Component {
   constructor(){

@@ -77,3 +77,16 @@
 .signup{
   padding: 10px;
 }
+
+.signup-outer-card{
+  margin: 0 auto;
+  width: 350px;
+  height: 500px;
+  border-style: groove;
+}
+
+.signup-card{
+  margin: 0 auto;
+  width: 250px;
+  height: 450px;
+}
