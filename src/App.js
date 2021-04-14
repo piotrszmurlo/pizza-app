@@ -105,7 +105,7 @@ class Button extends Component {
 class ProductCard extends Component {
   constructor(props) {
     super(props)
-    this.add_to_cart = this.add_to_cart.bind(this)
+    this.add_to_cart = this.addToCart.bind(this)
   }
   render() {
     return(
@@ -194,7 +194,7 @@ class HeaderComponent extends Component {
       <div className='header1'>
       <header>
         <nav className="navbar navbar-expand-md navbar-light bg-light">
-          <div><a href="localhost:3000/" className="navbar-brand">
+          <div><a className="navbar-brand">
             <img src={logo} width="50" height="50" alt=""></img>
             </a></div>
             <Link className="nav-link" to="/">Pepe's Pizza</Link>
