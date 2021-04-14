@@ -110,7 +110,7 @@ class ProductCard extends Component {
     return(
       <div className="productcard">
           <div className='menu-button'>
-            <button className="btn btn-danger" onClick={BasketComponent.addToBasket} value={this.props.id}>Add to cart</button>
+            <button className="btn btn-danger" onClick={BasketComponent.addToBasket} value={[this.props.id, this.props.picture]}>Add to cart</button>
             <a className='price'>{this.props.price}$</a>
           </div>
         <div className='product-card-in'>
@@ -180,39 +180,39 @@ class BasketComponent extends Component {
     // this.state = {
     //   menu : [][5]
     // }
-    this.addToBasket = this.addToBasket.bind(this);
   }
   static addToBasket(event)
   {
-    console.log(event.target.value)
-    // this.setState(
-      // {
-      //   let menu_length = this.state.menu.length;
-      //   let flag = 1;
-      //   for (let i=0; i<menu_length; i++){
-      //     if (this.state.menu[i][1]==ProductCard.props.name){
-      //     flag=0;
-      //     this.state.menu[i][5]++;
-      //     }
-      //   }
-      //   if (flag)
-      //   {
-      //     this.state.menu[menu_length + 1]=[ProductCard.props.name,
-      //       ProductCard.props.ingredients,
-      //       ProductCard.props.picture,
-      //       ProductCard.props.price,
-      //       1]
-      //   }
-      // }
+    var hh=event.target.value.split(',')
+    console.log(hh) //dziala
+//     this.setState(
+//       {
+//         let menu_length = this.state.menu.length;
+//         let flag = 1;
+//         for (let i=0; i<menu_length; i++){
+//           if (this.state.menu[i][1]==ProductCard.props.name){
+//           flag=0;
+//           this.state.menu[i][5]++;
+//           }
+//         }
+//         if (flag)
+//         {
+//           this.state.menu[menu_length + 1]=[ProductCard.props.name,
+//             ProductCard.props.ingredients,
+//             ProductCard.props.picture,
+//             ProductCard.props.price,
+//             1]
+//         }
+//       }
       
-  }
-create_basket()
-{
-    let menu_length = this.state.menu.length
-    for (let i=0; i<menu_length; i++){
+//   }
+// create_basket()
+// {
+//     let menu_length = this.state.menu.length
+//     for (let i=0; i<menu_length; i++){
       
     
-    }  
+//     }  
   }
 
 
@@ -221,7 +221,7 @@ create_basket()
     return(
       <div className="Basket">
         <img src={basket_image} className='basket_image' alt='basket' ></img>
-        <td><ProductCard name={this.state.menu[0][0]} ingredients={this.state.menu[0][1]} picture={this.state.menu[0][2]} price={this.state.menu[0][3]}></ProductCard></td>
+        {/* <td><ProductCard name={this.state.menu[0][0]} ingredients={this.state.menu[0][1]} picture={this.state.menu[0][2]} price={this.state.menu[0][3]}></ProductCard></td> */}
       </div>  
     )
   }
