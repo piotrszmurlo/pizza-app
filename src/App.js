@@ -6,6 +6,7 @@ import error_image from './images/error.jpg'
 import logo from './images/logo.jpg'
 import pizzaiolo from './images/pizzaiolo.jpg'
 import basket_image from './images/basket.png'
+import prosciutto from './images/prosciutto.png'
 import './components/ProductCard.css'
 import './components/Button.css'
 import './components/Login.css'
@@ -18,7 +19,7 @@ import { render } from '@testing-library/react';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="bg-light App">
         <Router>
           <>
               <HeaderComponent/>
@@ -43,9 +44,8 @@ class WelcomeComponent extends Component {
   render() {
     return(
       <div>
-        <img src={pizzaiolo} className='welcome_image' alt='welcome'></img>
-        Welcome to Pepe's Pizzeria
-        
+        <h3>Welcome to Pepe's pizza</h3>
+        <img src={pizzaiolo} className='welcome_image' alt='welcome' ></img>
       </div>
     )
   }
@@ -59,19 +59,19 @@ class MenuComponent extends Component {
       <center>
       <table  cellPadding="8" cellSpacing="0" colspan="3" width="150" height="150">
       <tr>
-        <td><ProductCard id={1} name='Margharita' ingredients='ciasto, sos, ser' picture={margharita} price="20"></ProductCard></td>
-        <td><ProductCard id={2} name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
-        <td><ProductCard id={3} name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+        <td><ProductCard id={1} name='Margharita' ingredients='red sauce, cheese' picture={margharita} price="20"></ProductCard></td>
+        <td><ProductCard id={2} name='Pepperoni' ingredients='red sauce, cheese, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+        <td><ProductCard id={3} name='Prosciutto' ingredients='red sauce, cheese, prosciutto, rukola, pomidor' picture={prosciutto} price="20"></ProductCard></td>
       </tr>
       <tr>
-        <td><ProductCard id={4} name='Margharita' ingredients='ciasto, sos, ser' picture={margharita} price="20"></ProductCard></td>
-        <td><ProductCard id={5} name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
-        <td><ProductCard id={6} name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+      <td><ProductCard id={1} name='Margharita' ingredients='red sauce, cheese' picture={margharita} price="20"></ProductCard></td>
+        <td><ProductCard id={2} name='Pepperoni' ingredients='red sauce, cheese, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+        <td><ProductCard id={3} name='Prosciutto' ingredients='red sauce, cheese, prosciutto, rukola, pomidor' picture={prosciutto} price="20"></ProductCard></td>
       </tr>
       <tr>
-        <td><ProductCard id={7} name='Margharita' ingredients='ciasto, sos, ser' picture={margharita} price="20"></ProductCard></td>
-        <td><ProductCard id={8} name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
-        <td><ProductCard id={9} name='Pepperoni' ingredients='ciasto, sos, ser, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+      <td><ProductCard id={1} name='Margharita' ingredients='red sauce, cheese' picture={margharita} price="20"></ProductCard></td>
+        <td><ProductCard id={2} name='Pepperoni' ingredients='red sauce, cheese, pepperoni' picture={pepperoni} price="20"></ProductCard></td>
+        <td><ProductCard id={3} name='Prosciutto' ingredients='red sauce, cheese, prosciutto, rukola, pomidor' picture={prosciutto} price="20"></ProductCard></td>
       </tr>
         
       </table>
@@ -111,7 +111,7 @@ class ProductCard extends Component {
       <div className="productcard">
           <div className='menu-button'>
             <button className="btn btn-danger" onClick={BasketComponent.addToBasket} value={[this.props.id, this.props.picture]}>Add to cart</button>
-            <a className='price'>{this.props.price}$</a>
+            <a className="price text-success mt-4">$19.99</a>
           </div>
         <div className='product-card-in'>
           <img src={this.props.picture} className='picture' alt='pizza' ></img>
@@ -141,6 +141,7 @@ class LoginComponent extends Component {
     }
     this.handleChange= this.handleChange.bind(this)
     this.loginClicked = this.loginClicked.bind(this)
+    this.signupClicked = this.signupClicked.bind(this)
   }
   
   loginClicked(){
@@ -165,10 +166,15 @@ class LoginComponent extends Component {
         Username: <input  type="text" name="username" placeholder="input your username" onChange={this.handleChange} className="form-control"/><br />
         Password: <input type="password" name="password" placeholder="••••••••" value={this.state.password} onChange={this.handleChange} className="form-control"/><br /><br />
           <button onClick={this.loginClicked} className="btn btn-danger btn-lg">Login</button>
+          <div className='signup'>
+          <button onClick={this.signupClicked} className="btn btn-danger btn-lg">Sign up</button></div>
     </div>
     </div>
     </div>
       )
+  }
+  signupClicked() {
+    this.props.history.push("/")
   }
 }
 
@@ -220,7 +226,39 @@ class BasketComponent extends Component {
   {
     return(
       <div className="Basket">
-        <img src={basket_image} className='basket_image' alt='basket' ></img>
+        <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Product</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+      <th scope="col">Total</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">
+        <img src={margharita} width="60"></img>
+        Margharita
+        </th>
+      <td>2</td>
+      <td>$19.99</td>
+      <td>$39.98</td>
+      <th> <button className="btn btn-danger">Remove</button></th>
+    </tr>
+    <tr>
+      <th scope="row">
+      <img src={pepperoni} width="55"></img>
+      Pepperoni</th>
+      <td>1</td>
+      <td>$19.99</td>
+      <td>$19.99</td>
+      <th> <button className="btn btn-danger">Remove</button></th>
+    </tr>
+  </tbody>
+</table>
+<Link className="nav-link" to="/login"><button className="btn btn-success">Checkout</button></Link>
         {/* <td><ProductCard name={this.state.menu[0][0]} ingredients={this.state.menu[0][1]} picture={this.state.menu[0][2]} price={this.state.menu[0][3]}></ProductCard></td> */}
       </div>  
     )
