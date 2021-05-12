@@ -13,9 +13,9 @@ class HeaderComponent extends Component {
       <div className='header1'>
       <header>
         <nav className="navbar navbar-expand-md navbar-light bg-light">
-          <div><a className="navbar-brand">
+          <div><h1 className="navbar-brand">
             <img src={logo} width="50" height="50" alt=""></img>
-            </a></div>
+            </h1></div>
             <Link className="nav-link" to="/">Pepe's Pizza</Link>
           <ul className="navbar-nav">
             <Link className="nav-link" to="/menu">Menu</Link>

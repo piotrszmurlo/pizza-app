@@ -69,7 +69,7 @@ class BasketComponent extends Component {
                 product =>
                 <tr key= {product.id}>
                   <th>
-                  <img src={product.img_src} width="60"></img>
+                  <img src={product.img_src} alt={product.product} width="60"></img>
                   {product.product}
                   </th>
                   <td>{product.quantity}</td>
@@ -88,24 +88,4 @@ class BasketComponent extends Component {
     )
   }
 }
-{/* <tr>
-  <th scope="row">
-    <img src={margharita} width="60"></img>
-    Margharita
-    </th>
-  <td>2</td>
-  <td>$19.99</td>
-  <td>$39.98</td>
-  <th> <button className="btn btn-danger">Remove</button></th>
-</tr>
-<tr>
-  <th scope="row">
-  <img src={pepperoni} width="55"></img>
-  Pepperoni</th>
-  <td>1</td>
-  <td>$19.99</td>
-  <td>$19.99</td>
-  <th> <button className="btn btn-danger">Remove</button></th>
-</tr> */}
-
 export default BasketComponent
