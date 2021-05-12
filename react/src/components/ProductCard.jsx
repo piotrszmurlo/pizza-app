@@ -9,17 +9,12 @@ class ProductCard extends Component {
   render() {
     return(
       <div className="productcard">
-          <div className='menu-button'>
-            <button className="btn btn-danger" onClick={BasketComponent.addToBasket} value={[this.props.id, this.props.picture]}>Add to cart</button>
-            <h1 className="price text-success mt-4">$19.99</h1>
-          </div>
-        <div className='product-card-in'>
-          <img src={this.props.picture} className='picture' alt='pizza' ></img>
+        <div className='product-card-indd'>
+          <img src={this.props.picture} className='picture' alt='pizza'></img>
         </div>
-          <div>
-          <p className='name'>{this.props.name}</p>
-          <p className='ingredients'>Ingredients: {this.props.ingredients}</p>
-          </div>
+          <h1 className='name'>{this.props.name}</h1>
+            <h1 className="price text-success mt-4">$19.99</h1>
+            <button className="btn btn-danger" onClick={BasketComponent.addToBasket} value={[this.props.id, this.props.picture]}>Add to cart</button>
       </div>
     )
   }
