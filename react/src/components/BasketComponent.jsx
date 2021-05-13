@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import margharita from './images/margharita.png'
 import pepperoni from './images/pepperoni.png'
 import {Link} from 'react-router-dom';
-
+import AuthenticationService from './AuthenticationService.js'
+import BasketDataService from '../api/pizza/BasketDataService.js'
 class BasketComponent extends Component {
   constructor(props){
     super(props);
@@ -10,45 +11,18 @@ class BasketComponent extends Component {
     this.state = {
       products : 
       [
-        {id: 1, product: 'Margharita', quantity: 2, price: 19.99, img_src: margharita},
-        {id: 2, product: 'Pepperoni', quantity: 1, price: 19.99, img_src: pepperoni}
       ]
     }
   }
-  static addToBasket(event)
-  {
-    var hh=event.target.value.split(',')
-    console.log(hh) //dziala
-//     this.setState(
-//       {
-//         let menu_length = this.state.menu.length;
-//         let flag = 1;
-//         for (let i=0; i<menu_length; i++){
-//           if (this.state.menu[i][1]==ProductCard.props.name){
-//           flag=0;
-//           this.state.menu[i][5]++;
-//           }
-//         }
-//         if (flag)
-//         {
-//           this.state.menu[menu_length + 1]=[ProductCard.props.name,
-//             ProductCard.props.ingredients,
-//             ProductCard.props.picture,
-//             ProductCard.props.price,
-//             1]
-//         }
-//       }
-      
-//   }
-// create_basket()
-// {
-//     let menu_length = this.state.menu.length
-//     for (let i=0; i<menu_length; i++){
-      
-    
-//     }  
-  }
 
+  componentDidMount(){
+    let username = AuthenticationService.getLoggedInUsername()
+    BasketDataService.retrieveBasket(username)
+    .then(response => {
+      console.log(response)
+      this.setState({products: response.data})
+    })
+  }
 
   render()
   {
@@ -67,14 +41,14 @@ class BasketComponent extends Component {
             {
               this.state.products.map(
                 product =>
-                <tr key= {product.id}>
+                <tr>
                   <th>
-                  <img src={product.img_src} alt={product.product} width="60"></img>
-                  {product.product}
+                  <img src={require(`${product.img_src}`).default} alt={product.name} width="60"></img>
+                  {product.name}
                   </th>
-                  <td>{product.quantity}</td>
+                  {/* <td>{product.quantity}</td> */}
                   <td>${product.price}</td>
-                  <td>${product.quantity*product.price}</td>
+                  {/* <td>${product.quantity*product.price}</td> */}
                   <th> <button className="btn btn-danger">Remove</button>
                   </th>
                 </tr>
@@ -83,7 +57,6 @@ class BasketComponent extends Component {
   </tbody>
 </table>
 <Link className="nav-link" to="/login"><button className="btn btn-success">Checkout</button></Link>
-        {/* <td><ProductCard name={this.state.menu[0][0]} ingredients={this.state.menu[0][1]} picture={this.state.menu[0][2]} price={this.state.menu[0][3]}></ProductCard></td> */}
       </div>  
     )
   }

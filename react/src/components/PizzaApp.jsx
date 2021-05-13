@@ -24,7 +24,7 @@ class PizzaApp extends Component {
               <Route path="/menu" component={MenuComponent}/>
               <Route path="/login" component={LoginComponent}/>
               <Route path="/signup" component={SignupComponent}/>
-              <AuthenticatedRoute path="/basket" component={BasketComponent}/> 
+              <AuthenticatedRoute path="/basket/:name" component={BasketComponent}/> 
               <AuthenticatedRoute path="/logout" component={LogoutComponent}/> 
               <AuthenticatedRoute path="/welcome/:name" component={WelcomeUserComponent}/> 
               <Route component={ErrorComponent}/>
