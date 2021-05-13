@@ -46,9 +46,9 @@ class BasketComponent extends Component {
                   <img src={require(`${product.img_src}`).default} alt={product.name} width="60"></img>
                   {product.name}
                   </th>
-                  {/* <td>{product.quantity}</td> */}
+                  <td>{product.quantity}</td>
                   <td>${product.price}</td>
-                  {/* <td>${product.quantity*product.price}</td> */}
+                  <td>${product.quantity*product.price}</td>
                   <th> <button className="btn btn-danger">Remove</button>
                   </th>
                 </tr>

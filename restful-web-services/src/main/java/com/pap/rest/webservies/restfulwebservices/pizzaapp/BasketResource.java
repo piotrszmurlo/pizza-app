@@ -16,7 +16,7 @@ public class BasketResource {
 	private BasketHardcodedService basketService;	
 	
 	@GetMapping("/user/{username}/basket")
-	public List<Product> getBasket(@PathVariable String username){
+	public List<BasketProduct> getBasket(@PathVariable String username){
 		return basketService.findBasket();
 		
 	}
