@@ -21,4 +21,18 @@ public class BasketProduct extends Product{
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(this==obj)
+			return true;
+		if(obj == null)
+			return false;
+		if(getClass()!=obj.getClass())
+			return false;
+		BasketProduct other = (BasketProduct) obj;
+		if(id != other.id)
+			return false;
+		return true;
+	}
 }

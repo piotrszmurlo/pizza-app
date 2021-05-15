@@ -21,7 +21,7 @@ class HeaderComponent extends Component {
             <Link className="nav-link" to="/menu">Menu</Link>
           </ul>
           <ul className="navbar-nav navbar-collapse justify-content-end">
-            {isUserLoggedIn && <Link className="nav-link" to={`/basket/${this.props.match.params.name}`}><img src={basket_image} className='basket_image_header' alt='basket' height='25px' ></img></Link>}
+            {isUserLoggedIn && <Link className="nav-link" to={`/basket/${AuthenticationService.getLoggedInUsername()}`}><img src={basket_image} className='basket_image_header' alt='basket' height='25px' ></img></Link>}
             {!isUserLoggedIn && <li><Link className="nav-link" to="/login">Login</Link></li>}
             {isUserLoggedIn && <li><Link className="nav-link" to="/logout" onClick={AuthenticationService.logout}>Logout</Link></li>}
           </ul>

@@ -2,8 +2,8 @@ package com.pap.rest.webservies.restfulwebservices.pizzaapp;
 
 public class Product {
 
-	private long id;
-	private String name;
+	public long id;
+	public String name;
 	private int price;
 	private String img_src;
 

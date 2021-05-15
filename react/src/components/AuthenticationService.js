@@ -1,6 +1,6 @@
 class AuthenticationService {
   registerSuccesfulLogin(username, password){
-    console.log('ddd')
+    console.log('User Logged In')
     sessionStorage.setItem('authenticatedUser', username);
   }
   logout(){

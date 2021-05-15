@@ -18,4 +18,27 @@ public class BasketHardcodedService {
 	public List<BasketProduct> findBasket(){
 		return basket;
 	}
+	
+	public BasketProduct deleteById(long id) {
+		BasketProduct basketproduct = findyById(id);
+		
+		if(basketproduct==null) return null;
+		
+		
+		if(basket.remove(basketproduct)) {
+		return basketproduct;	
+		}
+		return null;
+	}
+
+	public BasketProduct findyById(long id) {
+		for(BasketProduct basketproduct:basket)
+		{
+			if(basketproduct.getId()==id)
+				return basketproduct;
+		}
+		return null;
+	}
+	
+	
 }
