@@ -1,4 +1,4 @@
-package com.pap.rest.webservies.restfulwebservices.pizzaapp;
+package com.pap.rest.webservices.restfulwebservices.pizzaapp;
 
 public class BasketProduct extends Product{
 	private String username;
