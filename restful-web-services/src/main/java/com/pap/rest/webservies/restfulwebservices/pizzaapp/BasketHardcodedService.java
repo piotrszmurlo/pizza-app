@@ -13,7 +13,8 @@ public class BasketHardcodedService {
 	
 	static {basket.add(new BasketProduct(++idCounter, "margharita", 10, "./images/margharita.png", "admin", 2));
 	basket.add(new BasketProduct(++idCounter, "pepssperoni", 10, "./images/pepperoni.png", "admin", 3));
-	basket.add(new BasketProduct(++idCounter, "prosciutto", 10, "./images/prosciutto.png", "admin", 1));}
+	basket.add(new BasketProduct(++idCounter, "prosciutto", 10, "./images/prosciutto.png", "admin", 1));
+	}
 	
 	public List<BasketProduct> findBasket(){
 		return basket;

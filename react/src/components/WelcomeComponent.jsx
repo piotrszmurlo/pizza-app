@@ -26,7 +26,13 @@ class WelcomeComponent extends Component {
     console.log(response)
   }
   handleError(error){
-    this.setState({welcomeMessage: error.response.data.message})
+    let errorMessage = ''
+    if(error.message)
+      errorMessage += error.message 
+    if(error.response && error.response.data){
+      errorMessage += error.response.data.message
+    }
+    this.setState({welcomeMessage: errorMessage})
   }
   retrieveWelcomeMessage(){
     HelloWorldService.executeHelloWorldPathVariableService("witam")
