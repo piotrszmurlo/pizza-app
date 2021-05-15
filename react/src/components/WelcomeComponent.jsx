@@ -23,7 +23,6 @@ class WelcomeComponent extends Component {
   }
   handleSuccessfulResponse(response){
     this.setState({welcomeMessage: response.data.message})
-    console.log(response)
   }
   handleError(error){
     let errorMessage = ''
