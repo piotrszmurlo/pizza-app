@@ -34,9 +34,9 @@ class MenuComponent extends Component {
         {this.state.rows.map(row => {return(
           <tr>
             {console.log(row[0].img_src)}
-            <td><ProductCard id={row[0].id} name={row[0].name} picture={require(`${row[0].img_src}`).default} price={row[0].price}></ProductCard></td>
-            {row.length > 1 && <td><ProductCard id={row[1].id} name={row[1].name} picture={require(`${row[1].img_src}`).default} price={row[1].price}></ProductCard></td>}
-            {row.length > 2 && <td><ProductCard id={row[2].id} name={row[2].name} picture={require(`${row[2].img_src}`).default} price={row[2].price}></ProductCard></td>}
+            <td><ProductCard id={row[0].id} name={row[0].name} picture={row[0].img_src} price={row[0].price}></ProductCard></td>
+            {row.length > 1 && <td><ProductCard id={row[1].id} name={row[1].name} picture={row[1].img_src} price={row[1].price}></ProductCard></td>}
+            {row.length > 2 && <td><ProductCard id={row[2].id} name={row[2].name} picture={row[2].img_src} price={row[2].price}></ProductCard></td>}
           </tr>
         )})}
         </tbody>

@@ -13,8 +13,8 @@ class ProductCard extends Component {
   {
     let username = AuthenticationService.getLoggedInUsername()
     console.log(product.id+" dziala")
-    BasketDataService.addToBasket(username, product.id, product)
-      .then(console.log("udalo sie"))
+    BasketDataService.addToBasket(username, {id: this.props.id, name: this.props.name, price: this.props.price, img_src: this.props.picture})
+      .then(console.log(this.props.id,this.props.name,this.props.price,this.props.picture))
   }
 
 
@@ -22,7 +22,7 @@ class ProductCard extends Component {
     return(
       <div className="productcard">
         <div className='product-card-indd'>
-          <img src={this.props.picture} className='picture' alt='pizza'></img>
+          <img src={require(`${this.props.picture}`).default} className='picture' alt='pizza'></img>
         </div>
           <h1 className='name'>{this.props.productname}</h1>
             <h1 className="price text-success mt-4">$19.99</h1>

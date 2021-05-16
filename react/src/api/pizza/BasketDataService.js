@@ -11,8 +11,8 @@ class BasketDataService {
     return axios.delete(`http://localhost:8080/user/${name}/basket/${id}`)
   }
 
-  addToBasket(name,id,product){
-    return axios.put(`http://localhost:8080/user/${name}/basket/${id}`, product);
+  addToBasket(name,product){
+    return axios.post(`http://localhost:8080/user/${name}/basket/`, product);
   }
 }
 export default new BasketDataService()
