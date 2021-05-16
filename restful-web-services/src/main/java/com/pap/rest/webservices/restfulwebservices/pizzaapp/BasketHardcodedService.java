@@ -11,9 +11,9 @@ public class BasketHardcodedService {
 	private static List<BasketProduct> basket = new ArrayList<>();
 	private static int idCounter = 0;
 	
-	static {basket.add(new BasketProduct(++idCounter, "margharita", 10, "./images/margharita.png", "admin", 2));
-	basket.add(new BasketProduct(++idCounter, "pepssperoni", 10, "./images/pepperoni.png", "admin", 3));
-	//basket.add(new BasketProduct(++idCounter, "prosciutto", 10, "./images/prosciutto.png", "admin", 1));
+	static {basket.add(new BasketProduct(++idCounter, "margharita", 10, "admin", 2));
+	basket.add(new BasketProduct(++idCounter, "pepperoni", 10, "admin", 3));
+	//basket.add(new BasketProduct(++idCounter, "prosciutto", 10,"admin", 1));
 	}
 	
 	public List<BasketProduct> findBasket(){
@@ -42,7 +42,7 @@ public class BasketHardcodedService {
 	}
 	
 	public BasketProduct addNew(Product product) {
-		BasketProduct basketproduct = new BasketProduct(product.getId(), product.getName(), 10, product.getImg_src(), "admin", 1);
+		BasketProduct basketproduct = new BasketProduct(product.getId(), product.getName(), 10, "admin", 1);
 		basket.add(basketproduct);
 		return basketproduct;
 	}

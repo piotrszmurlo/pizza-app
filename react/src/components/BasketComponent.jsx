@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
-import margharita from './images/margharita.png'
-import pepperoni from './images/pepperoni.png'
+import {IMG_PATH} from '../constants.js'
 import {Link} from 'react-router-dom';
 import AuthenticationService from './AuthenticationService.js'
 import BasketDataService from '../api/pizza/BasketDataService.js'
@@ -63,9 +62,9 @@ class BasketComponent extends Component {
             {
               this.state.products.map(
                 product =>
-                <tr>
+                <tr key={product.id}> 
                   <th>
-                  <img src={require(`${product.img_src}`).default} alt={product.name} width="60"></img>
+                  <img src={require(`${IMG_PATH}${product.name}.png`).default} alt={product.name} width="60"></img>
                   {product.name}
                   </th>
                   <td>{product.quantity}</td>

@@ -5,8 +5,8 @@ public class BasketProduct extends Product{
 	private String username;
 	private int quantity;
 	
-	public BasketProduct(long id, String name, int price, String img_src, String username, int quantity) {
-		super(id, name, price, img_src);
+	public BasketProduct(long id, String name, int price, String username, int quantity) {
+		super(id, name, price);
 		this.quantity = quantity;
 		this.username = username;
 	}

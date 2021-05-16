@@ -12,24 +12,14 @@ public class Product {
 	public Long id;
 	public String name;
 	private int price;
-	private String img_src;
 	
 	protected Product() {
 	}
-	public String getImg_src() {
-		return img_src;
-	}
-
-	public void setImg_src(String img_src) {
-		this.img_src = img_src;
-	}
-
-	public Product(Long id, String name, int price, String img_src) {
+	public Product(Long id, String name, int price) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.price = price;
-		this.img_src = img_src;
 	}
 
 	public Long getId() {

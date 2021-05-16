@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import ProductCard from './ProductCard.jsx'
 import MenuDataService from '../api/pizza/MenuDataService.js'
+import {IMG_PATH} from '../constants.js'
 class MenuComponent extends Component {
   constructor(props){
     super(props)
@@ -32,11 +33,11 @@ class MenuComponent extends Component {
       <table  cellPadding="8" cellSpacing="0" colSpan="3" width="150" height="150">
       <tbody>
         {this.state.rows.map(row => {return(
-          <tr>
+          <tr key={row[0].id}>
             {console.log(row[0].name)}
-            <td><ProductCard id={row[0].id} name={row[0].name} picture={row[0].img_src} price={row[0].price}></ProductCard></td>
-            {row.length > 1 && <td><ProductCard id={row[1].id} name={row[1].name} picture={row[1].img_src} price={row[1].price}></ProductCard></td>}
-            {row.length > 2 && <td><ProductCard id={row[2].id} name={row[2].name} picture={row[2].img_src} price={row[2].price}></ProductCard></td>}
+            <td><ProductCard id={row[0].id} name={row[0].name} picture={IMG_PATH + row[0].name + '.png'} price={row[0].price}></ProductCard></td>
+            {row.length > 1 && <td><ProductCard id={row[1].id} name={row[1].name} picture={IMG_PATH + row[1].name + '.png'} price={row[1].price}></ProductCard></td>}
+            {row.length > 2 && <td><ProductCard id={row[2].id} name={row[2].name} picture={IMG_PATH + row[2].name + '.png'} price={row[2].price}></ProductCard></td>}
           </tr>
         )})}
         </tbody>
