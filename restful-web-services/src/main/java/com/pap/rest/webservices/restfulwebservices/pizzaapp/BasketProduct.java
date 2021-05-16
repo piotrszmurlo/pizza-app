@@ -1,5 +1,6 @@
 package com.pap.rest.webservices.restfulwebservices.pizzaapp;
 
+
 public class BasketProduct extends Product{
 	private String username;
 	private int quantity;

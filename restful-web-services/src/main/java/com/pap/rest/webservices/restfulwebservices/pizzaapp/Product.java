@@ -1,8 +1,15 @@
 package com.pap.rest.webservices.restfulwebservices.pizzaapp;
 
-public class Product {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-	public long id;
+@Entity
+public class Product {
+	
+	@Id
+	@GeneratedValue
+	public Long id;
 	public String name;
 	private int price;
 	private String img_src;
@@ -17,7 +24,7 @@ public class Product {
 		this.img_src = img_src;
 	}
 
-	public Product(long id, String name, int price, String img_src) {
+	public Product(Long id, String name, int price, String img_src) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -25,11 +32,11 @@ public class Product {
 		this.img_src = img_src;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
