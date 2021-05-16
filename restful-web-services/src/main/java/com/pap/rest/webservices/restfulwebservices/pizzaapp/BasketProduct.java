@@ -9,6 +9,8 @@ public class BasketProduct extends Product{
 		this.quantity = quantity;
 		this.username = username;
 	}
+	protected BasketProduct(){
+	}
 	public String getUsername() {
 		return username;
 	}

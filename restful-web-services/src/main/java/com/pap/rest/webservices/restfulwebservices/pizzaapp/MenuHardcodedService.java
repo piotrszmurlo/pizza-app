@@ -18,4 +18,14 @@ public class MenuHardcodedService {
 	public List<Product> findAll(){
 		return menu;
 	}
+	
+	public Product findById(long id) {
+		for(Product menuproduct:menu)
+		{
+			if(menuproduct.getId()==id)
+				return menuproduct;
+		}
+		return null;
+	}
+
 }

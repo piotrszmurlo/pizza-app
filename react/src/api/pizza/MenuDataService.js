@@ -9,5 +9,11 @@ class MenuDataService {
     let basicAuthHeader = 'Basic ' + window.btoa(username + ":" + password)
     return axios.get(`${API_URL}/menu`, {headers: {authorization: basicAuthHeader}})
   }
+
+  retrieveProduct(id)
+  {
+    return axios.get(`http://localhost:8080/menu/${id}`)
+  }
+  
 }
 export default new MenuDataService

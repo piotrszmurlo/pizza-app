@@ -14,13 +14,9 @@ class BasketComponent extends Component {
     
   }
   this.deleteProductClicked = this.deleteProductClicked.bind(this);
-  this.refreshTodos = this.refreshTodos.bind(this);  
-  this.addToBasket = this.addToBasket.bind(this);  
+  this.refreshTodos = this.refreshTodos.bind(this);   
 }
 
-  addToBasket(id){
-  console.log({id} + " + basket")
-  }
 
   componentDidMount(){
     this.refreshTodos()
@@ -53,7 +49,7 @@ class BasketComponent extends Component {
     return(
       
       <div className="container">
-        {this.state.message &&<div class="alert alert-success">{this.state.message}</div>}
+        {this.state.message &&<div className="alert alert-success">{this.state.message}</div>}
         <table className="table table-striped">
           <thead>
             <tr>

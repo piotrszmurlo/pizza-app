@@ -1,5 +1,7 @@
 package com.pap.rest.webservices.restfulwebservices.pizzaapp;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @CrossOrigin(origins="http://localhost:4200")
@@ -33,6 +38,18 @@ public class BasketResource {
 		}
 		return ResponseEntity.notFound().build();
 	}
+	@GetMapping("/user/{usermame}/basket/{id}")
+	public Product getBasket(String username, @PathVariable long id){
+		return basketService.findById(id);
+	}
 	
+	@PostMapping("/user/{username}/basket")
+	public ResponseEntity<Void> addToBasket(
+			@PathVariable String username, @RequestBody Product product) throws URISyntaxException{
+		BasketProduct newBasket = basketService.addNew(product);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newBasket.getId()).toUri();
+		return ResponseEntity.created(uri).build();
+		
+	}
 	
 }

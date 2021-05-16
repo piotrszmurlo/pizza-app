@@ -13,7 +13,7 @@ public class BasketHardcodedService {
 	
 	static {basket.add(new BasketProduct(++idCounter, "margharita", 10, "./images/margharita.png", "admin", 2));
 	basket.add(new BasketProduct(++idCounter, "pepssperoni", 10, "./images/pepperoni.png", "admin", 3));
-	basket.add(new BasketProduct(++idCounter, "prosciutto", 10, "./images/prosciutto.png", "admin", 1));
+	//basket.add(new BasketProduct(++idCounter, "prosciutto", 10, "./images/prosciutto.png", "admin", 1));
 	}
 	
 	public List<BasketProduct> findBasket(){
@@ -21,7 +21,7 @@ public class BasketHardcodedService {
 	}
 	
 	public BasketProduct deleteById(long id) {
-		BasketProduct basketproduct = findyById(id);
+		BasketProduct basketproduct = findById(id);
 		
 		if(basketproduct==null) return null;
 		
@@ -32,13 +32,19 @@ public class BasketHardcodedService {
 		return null;
 	}
 
-	public BasketProduct findyById(long id) {
+	public BasketProduct findById(long id) {
 		for(BasketProduct basketproduct:basket)
 		{
 			if(basketproduct.getId()==id)
 				return basketproduct;
 		}
 		return null;
+	}
+	
+	public BasketProduct addNew(Product product) {
+		BasketProduct basketproduct = new BasketProduct(product.getId(), product.getName(), 10, product.getImg_src(), "admin", 1);
+		basket.add(basketproduct);
+		return basketproduct;
 	}
 	
 	

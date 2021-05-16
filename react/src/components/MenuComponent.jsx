@@ -1,7 +1,4 @@
 import React, {Component} from 'react'
-import margharita from './images/margharita.png'
-import pepperoni from './images/pepperoni.png'
-import prosciutto from './images/prosciutto.png'
 import ProductCard from './ProductCard.jsx'
 import MenuDataService from '../api/pizza/MenuDataService.js'
 class MenuComponent extends Component {

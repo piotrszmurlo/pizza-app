@@ -6,7 +6,9 @@ public class Product {
 	public String name;
 	private int price;
 	private String img_src;
-
+	
+	protected Product() {
+	}
 	public String getImg_src() {
 		return img_src;
 	}
@@ -45,5 +47,19 @@ public class Product {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(this==obj)
+			return true;
+		if(obj == null)
+			return false;
+		if(getClass()!=obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		if(id != other.id)
+			return false;
+		return true;
 	}
 }
