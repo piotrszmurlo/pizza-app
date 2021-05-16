@@ -11,6 +11,7 @@ import WelcomeUserComponent from './WelcomeUserComponent.jsx'
 import WelcomeComponent from './WelcomeComponent.jsx'
 import LogoutComponent from './LogoutComponent.jsx'
 import FooterComponent from './FooterComponent.jsx'
+import BasketProductComponent from './BasketProductComponent.jsx'
 
 class PizzaApp extends Component {
   render() {
@@ -21,7 +22,7 @@ class PizzaApp extends Component {
               <HeaderComponent/>
             <Switch>
               <Route path="/" exact component={WelcomeComponent}/>
-              <Route path="/menu/:id" component={MenuComponent}/>
+              <AuthenticatedRoute path="/menu/:id" component={BasketProductComponent}/>
               <Route path="/menu" component={MenuComponent}/>
               <Route path="/login" component={LoginComponent}/>
               <Route path="/signup" component={SignupComponent}/>

@@ -1,40 +1,49 @@
 import React, {Component} from 'react'
 import ProductCard from './ProductCard.jsx'
 import MenuDataService from '../api/pizza/MenuDataService.js'
+import BasketDataService from '../api/pizza/BasketDataService.js'
+import AuthenticationService from './AuthenticationService.js'
+
 class MenuComponent extends Component {
   constructor(props){
     super(props)
     this.state = {
-      rows : []
+      menu : []
     }
+    this.moveToBasketClicked=this.moveToBasketClicked.bind(this);
   }
 
   componentDidMount(){
     MenuDataService.retrieveAllProducts()
     .then(response => {
-      var rows_ = [], size = 3
-      for(let i = 0; i < response.data.length; i += size)
-        rows_.push(response.data.slice(i, i + size))
-      this.setState({rows : rows_})
+      this.setState({menu : response.data})
     })
   }
 
+  moveToBasketClicked(product)
+  {
+   this.props.history.push(`/menu/${product.id}`)    
+  }
+
   render() {
-    var limk = require('./images/margharita.png')
     return(
       <div className="container">
       <h3 className='header'>Menu</h3>
       <center>
       <table  cellPadding="8" cellSpacing="0" colSpan="3" width="150" height="150">
       <tbody>
-        {this.state.rows.map(row => {return(
-          <tr>
-            {console.log(row[0].img_src)}
-            <td><ProductCard id={row[0].id} name={row[0].name} picture={require(`${row[0].img_src}`).default} price={row[0].price}></ProductCard></td>
-            {row.length > 1 && <td><ProductCard id={row[1].id} name={row[1].name} picture={require(`${row[1].img_src}`).default} price={row[1].price}></ProductCard></td>}
-            {row.length > 2 && <td><ProductCard id={row[2].id} name={row[2].name} picture={require(`${row[2].img_src}`).default} price={row[2].price}></ProductCard></td>}
-          </tr>
-        )})}
+        {
+        this.state.menu.map (menuproduct =>
+          <div className="productcard">
+          <div className='product-card-indd'>
+            <img src={menuproduct.img_src} className='picture' alt='pizza'></img>
+          </div>
+            <h1 className='name'>{menuproduct.name}</h1>
+              <h1 className="price text-success mt-4">{menuproduct.price}</h1>
+              <button className="btn btn-danger" onClick={()=>this.moveToBasketClicked(menuproduct)} >Add to cart</button>
+        </div>
+        ) 
+         }
         </tbody>
         </table>
         </center>

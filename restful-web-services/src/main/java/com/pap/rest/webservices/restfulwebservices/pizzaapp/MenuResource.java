@@ -17,12 +17,12 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.pap.rest.webservices.restfulwebservices.pizzaapp.MenuHardcodedService;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin
 public class MenuResource {
 	
 	@Autowired
 	private MenuHardcodedService menuService;
-	
+		
 	@Autowired
 	private BasketHardcodedService basketService;
 	
@@ -32,7 +32,7 @@ public class MenuResource {
 	}
 	
 	@GetMapping("/menu/{id}")
-	public Product getMenu(String username, @PathVariable long id){
+	public Product getMenu(@PathVariable long id){
 		return menuService.findById(id);
 	}
 	
