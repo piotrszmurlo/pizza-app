@@ -10,13 +10,18 @@ class MenuComponent extends Component {
   }
 
   componentDidMount(){
+    if(this.props.match.params.id==null){
     MenuDataService.retrieveAllProducts()
     .then(response => {
       var rows_ = [], size = 3
       for(let i = 0; i < response.data.length; i += size)
         rows_.push(response.data.slice(i, i + size))
       this.setState({rows : rows_})
-    })
+    })}
+    else {
+      MenuDataService.retrieveProduct(this.props.match.params.id)
+      .then(response => {this.setState({rows : response.data})})
+    }
   }
 
   render() {

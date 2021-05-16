@@ -1,4 +1,4 @@
-package com.pap.rest.webservies.restfulwebservices.helloworld;
+package com.pap.rest.webservices.restfulwebservices.helloworld;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
