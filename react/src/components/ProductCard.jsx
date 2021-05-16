@@ -11,11 +11,15 @@ class ProductCard extends Component {
   }
   moveToBasketClicked(product)
   {
+    if (!AuthenticationService.isUserLoggedIn()){
+      this.props.history.push("/login")
+    }
+    else {
     let username = AuthenticationService.getLoggedInUsername()
     console.log(product.id+" dziala")
     BasketDataService.addToBasket(username, product.id, product)
       .then(console.log("udalo sie"))
-    
+    }
   }
 
 

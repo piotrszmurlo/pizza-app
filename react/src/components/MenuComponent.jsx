@@ -25,7 +25,6 @@ class MenuComponent extends Component {
   }
 
   render() {
-    var limk = require('./images/margharita.png')
     return(
       <div className="container">
       <h3 className='header'>Menu</h3>
