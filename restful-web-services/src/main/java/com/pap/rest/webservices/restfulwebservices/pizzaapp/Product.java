@@ -9,10 +9,9 @@ public class Product {
 	
 	@Id
 	@GeneratedValue
-	public Long id;
-	public String name;
+	private Long id;
+	private String name;
 	private int price;
-	
 	protected Product() {
 	}
 	public Product(Long id, String name, int price) {

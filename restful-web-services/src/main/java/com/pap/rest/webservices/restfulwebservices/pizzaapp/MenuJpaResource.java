@@ -24,7 +24,7 @@ public class MenuJpaResource {
 	private MenuJpaRepository menuJpaRepository;
 	
 	@Autowired
-	private BasketHardcodedService basketService;
+	private BasketJpaRepository basketRepository;
 	
 	@GetMapping("/jpa/menu")
 	public List<Product> getMenu(String username){

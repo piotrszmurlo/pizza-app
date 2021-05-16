@@ -11,43 +11,45 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @CrossOrigin(origins="http://localhost:4200")
-public class BasketResource {
+public class BasketJpaResource {
 	
 	@Autowired
-	private BasketHardcodedService basketService;	
+	private BasketJpaRepository basketJpaRepository;	
 	
-	@GetMapping("/user/{username}/basket")
+	@GetMapping("/jpa/user/{username}/basket")
 	public List<BasketProduct> getBasket(@PathVariable String username){
-		return basketService.findBasket();
+		return basketJpaRepository.findByUsername(username);
 		
 	}
 	//DELETE
-	@DeleteMapping("/user/{username}/basket/{id}")
+	@DeleteMapping("/jpa/user/{username}/basket/{id}")
 	public ResponseEntity<Void> deleteProduct(@PathVariable String username, @PathVariable long id){
-		
-		BasketProduct product = basketService.deleteById(id);
-		if(product!=null)
-		{
-			return ResponseEntity.noContent().build();
-		}
-		return ResponseEntity.notFound().build();
+		 basketJpaRepository.deleteById(id);
+		 return ResponseEntity.noContent().build();
+
 	}
-	@GetMapping("/user/{username}/basket/{id}")
+	@GetMapping("/jpa/user/{username}/basket/{id}")
 	public BasketProduct getBasket(String username, @PathVariable long id){
-		return basketService.findById(id);
+		return basketJpaRepository.findById(id).get();
 	}
 	
-	@PostMapping("/user/{username}/basket")
-	public ResponseEntity<Void> addToBasket(
-			@PathVariable String username, @RequestBody Product product) throws URISyntaxException{
-		BasketProduct newBasket = basketService.addNew(product);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newBasket.getId()).toUri();
+	@PostMapping("/jpa/user/{username}/basket")
+	public ResponseEntity<Void> addToBasket(@PathVariable String username, @RequestBody BasketProduct product) throws URISyntaxException{
+		BasketProduct basketProduct = new BasketProduct();
+		basketProduct.setName(product.getName());
+		basketProduct.setPrice(product.getPrice());
+		basketProduct.setQuantity(product.getQuantity());
+		basketProduct.setUsername(username);
+		BasketProduct newBasketProduct = basketJpaRepository.save(basketProduct);
+		newBasketProduct.setUsername(username);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newBasketProduct.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 		
 	}

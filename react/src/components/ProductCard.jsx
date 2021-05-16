@@ -11,10 +11,23 @@ class ProductCard extends Component {
   }
   moveToBasketClicked(product)
   {
-    let username = AuthenticationService.getLoggedInUsername()
-    console.log(product.id+" dziala")
-    BasketDataService.addToBasket(username, {id: this.props.id, name: this.props.name, price: this.props.price, img_src: this.props.picture})
-      .then(console.log(this.props.id,this.props.name,this.props.price,this.props.picture))
+    let username_ = AuthenticationService.getLoggedInUsername()
+    let alreadyInBasket = false
+    BasketDataService.retrieveBasket(username_)
+    .then(response => {
+      for(let i = 0; i < response.data.length; i += 1){
+        if(response.data[i].name === this.props.name){
+          console.log(response.data[i].id)
+          alreadyInBasket = true
+          BasketDataService.deleteProduct(username_, response.data[i].id)
+          BasketDataService.addToBasket(username_,{id: this.props.id, name: this.props.name, price: this.props.price, username: username_, quantity: response.data[i].quantity+1})
+          break
+        }
+      }
+      if(!alreadyInBasket) {
+        BasketDataService.addToBasket(username_, {id: this.props.id, name: this.props.name, price: this.props.price, username: username_, quantity: 1})
+      }
+    })
   }
 
 
