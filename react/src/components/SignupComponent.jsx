@@ -22,13 +22,13 @@ class SignupComponent extends Component {
   signupClicked(){
 
     SignupDataService.registerNewUser(this.state.username, this.state)
-    .then(
+    .then(response =>{
       AuthenticationService
       .executeJwtAuthenticationService(this.state.username, this.state.password)
       .then((response) => {
         AuthenticationService.registerSuccesfulLoginForJwt(this.state.username, response.data.token);
         this.props.history.push(`/welcome/${this.state.username}`)
-      })
+    })}
     )
     // this.props.history.push("/login")
   }
