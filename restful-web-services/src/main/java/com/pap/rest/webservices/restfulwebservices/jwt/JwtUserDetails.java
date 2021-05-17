@@ -24,7 +24,7 @@ public class JwtUserDetails implements UserDetails {
   @GeneratedValue
   private final Long id;
   private final String username;
-  private final String password;
+  private String password;
   
   @Transient
   private final Collection<? extends GrantedAuthority> authorities;
@@ -95,6 +95,10 @@ public String getStreet() {
 	return street;
 }
 
+public void setPassword(String password) {
+	this.password = password;
+}
+
 public void setStreet(String street) {
 	this.street = street;
 }
@@ -135,7 +139,6 @@ public void setStreetNumber(String streetNumber) {
     return true;
   }
 
-  @JsonIgnore
   @Override
   public String getPassword() {
     return password;
