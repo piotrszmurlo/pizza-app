@@ -36,3 +36,9 @@ values(10002, 'pepperoni', 10,'in28minutes', 4);
 
 insert into basket_product(id,name,price,username,quantity)
 values(10003, 'prosciutto', 10,'in28minutes', 4);
+
+insert into jwt_user_details(id, username, password, name, surname, number,city, street, street_number)
+values(10001, 'matikurcze','$2a$10$3zHzb.Npv1hfZbLEU5qsdOju/tk2je6W6PnNnY.c1ujWPcZh4PL6e', 'Mati', 'Roszko', '123123123', 'Grodno', 'Bialostocka', '11');
+
+insert into jwt_user_details(id, username, password, name, surname, number,city, street, street_number)
+values(10002, 'pepe','$2a$10$3zHzb.Npv1hfZbLEU5qsdOju/tk2je6W6PnNnY.c1ujWPcZh4PL6e', 'Piotr', 'Zagorski', '123123123', 'Grodno', 'Bialostocka', '12');

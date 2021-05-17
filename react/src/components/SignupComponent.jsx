@@ -14,8 +14,7 @@ class SignupComponent extends Component {
   }
   
   signupClicked(){
-    this.props.history.push("/menu")
-    console.log('Trying to signup')
+    this.props.history.push("/welcome/-1")
   }
 
   handleRegistration(event){

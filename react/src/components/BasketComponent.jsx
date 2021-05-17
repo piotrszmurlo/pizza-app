@@ -30,7 +30,7 @@ class BasketComponent extends Component {
       this.setState({products: response.data})
       let newTotal=0;
       this.state.products.map(product=>newTotal=newTotal+product.quantity*product.price)
-      this.setState({total:newTotal} )
+      this.setState({total:newTotal})
     })
     
   }
@@ -46,7 +46,6 @@ class BasketComponent extends Component {
       }
     )
   }
-
 
   render()
   {
@@ -82,7 +81,9 @@ class BasketComponent extends Component {
             }
   </tbody>
 </table>
-{this.state.total}
+<h3>
+Total: ${this.state.total}
+</h3>
 <Link className="nav-link" to="/login"><button className="btn btn-success">Checkout</button></Link>
       </div>  
     )
