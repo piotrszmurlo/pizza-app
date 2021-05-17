@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class BasketHardcodedService {
 	
 	private static List<BasketProduct> basket = new ArrayList<>();
-	private static int idCounter = 0;
+	private static long idCounter = 0;
 	
 	static {basket.add(new BasketProduct(++idCounter, "margharita", 10, "admin", 2));
 	basket.add(new BasketProduct(++idCounter, "pepperoni", 10, "admin", 3));

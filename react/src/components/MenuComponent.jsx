@@ -32,7 +32,7 @@ class MenuComponent extends Component {
       <center>
       <table  cellPadding="8" cellSpacing="0" colSpan="3" width="150" height="150">
       <tbody>
-        {this.state.rows.map(row => {return(
+        {this.state.rows.map(row => { return(
           <tr key={row[0].id}>
             {console.log(row[0].name)}
             <td><ProductCard id={row[0].id} name={row[0].name} picture={IMG_PATH + row[0].name + '.png'} price={row[0].price}></ProductCard></td>

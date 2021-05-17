@@ -13,15 +13,15 @@ class BasketComponent extends Component {
     
   }
   this.deleteProductClicked = this.deleteProductClicked.bind(this);
-  this.refreshTodos = this.refreshTodos.bind(this);   
+  this.refreshBasket = this.refreshBasket.bind(this);   
 }
 
 
   componentDidMount(){
-    this.refreshTodos()
+    this.refreshBasket()
   }
 
-  refreshTodos(){
+  refreshBasket(){
   let username = AuthenticationService.getLoggedInUsername()
   BasketDataService.retrieveBasket(username)
     .then(response => {
@@ -37,7 +37,7 @@ class BasketComponent extends Component {
     . then(
       responde => {
         this.setState({ message: `Delete of product ${productname} Succesful`})
-        this.refreshTodos()
+        this.refreshBasket()
       }
     )
   }
