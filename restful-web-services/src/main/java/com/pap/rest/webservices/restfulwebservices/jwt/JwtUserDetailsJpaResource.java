@@ -22,44 +22,48 @@ import com.pap.rest.webservices.restfulwebservices.pizzaapp.MenuJpaRepository;
 import com.pap.rest.webservices.restfulwebservices.pizzaapp.Product;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class JwtUserDetailsJpaResource {
-	
+
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
-	
+
 	@Autowired
 	private JwtUserDetailsJpaRepository jwtUserDetailsJpaRepository;
-	
+
 	@GetMapping("/jpa/user")
-	public List<JwtUserDetails> getAllUsers(String username){
+	public List<JwtUserDetails> getAllUsers(String username) {
 		return jwtUserDetailsJpaRepository.findAll();
 	}
-	
-	@GetMapping("/jpa/user/{id}")
-	public JwtUserDetails getUser(String username, @PathVariable long id){
-		return jwtUserDetailsJpaRepository.findById(id).get();
-//		return jwtUserDetailsJpaRepository.findByUsername(username);
+
+//	@GetMapping("/jpa/user/{id}")
+//	public JwtUserDetails getUser(String username, @PathVariable long id) {
+//		return jwtUserDetailsJpaRepository.findById(id).get();
+////		return jwtUserDetailsJpaRepository.findByUsername(username);
+//	}
+
+	@GetMapping("/jpa/user/{username}")
+	public JwtUserDetails getUserByUsername(@PathVariable String username) {
+		return jwtUserDetailsJpaRepository.findByUsername(username);
 	}
-	
+
 	@PostMapping("/jpa/user/{username}")
-	public ResponseEntity<Void> addUser(@RequestBody JwtUserDetails user) throws URISyntaxException{
+	public ResponseEntity<Void> addUser(@RequestBody JwtUserDetails user) throws URISyntaxException {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		JwtUserDetails newUser = jwtUserDetailsJpaRepository.save(user);
 		newUser.setPassword(user.getPassword());
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{username}").buildAndExpand(newUser.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{username}").buildAndExpand(newUser.getId())
+				.toUri();
 		return ResponseEntity.created(uri).build();
-	}	
-	
-	/*
-	 * @PutMapping("/menu")
-	public ResponseEntity<BasketProduct> updateBasket(@RequestBody BasketProduct product){
-		BasketProduct newBasket = basketService.add(product);
-		return new ResponseEntity<BasketProduct>(product, HttpStatus.OK);
-		
 	}
-	*/
-	
-	 
-	
+
+	/*
+	 * @PutMapping("/menu") public ResponseEntity<BasketProduct>
+	 * updateBasket(@RequestBody BasketProduct product){ BasketProduct newBasket =
+	 * basketService.add(product); return new ResponseEntity<BasketProduct>(product,
+	 * HttpStatus.OK);
+	 * 
+	 * }
+	 */
+
 }
