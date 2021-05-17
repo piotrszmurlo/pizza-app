@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import propTypes from 'prop-types'
-import BasketComponent from './BasketComponent.jsx'
+import MenuComponent from './MenuComponent.jsx'
 import BasketDataService from '../api/pizza/BasketDataService.js'
 import AuthenticationService from './AuthenticationService.js'
 
@@ -8,7 +8,34 @@ class ProductCard extends Component {
   constructor(props) {
    super(props)
    this.moveToBasketClicked=this.moveToBasketClicked.bind(this);
+   this.state ={
+     quantity : 0
+   }
   }
+
+  componentDidMount(){
+    this.refreshCard()
+    }
+  
+  refreshCard(){
+    let username = AuthenticationService.getLoggedInUsername()
+  BasketDataService.retrieveBasket(username)
+    .then(response => { for(let i = 0; i < response.data.length; i ++){
+      if ( response.data[i].name===this.props.name){
+        this.setState({quantity: response.data[i].quantity})
+      }}})
+  }
+
+  showQuantity()
+  {
+    if (this.state.quantity==0){
+      return <td></td>
+    }
+    else {
+      return <h5> Currently: {this.state.quantity}</h5>
+    }
+  }
+
   moveToBasketClicked(product)
   {
     let username_ = AuthenticationService.getLoggedInUsername()
@@ -27,6 +54,7 @@ class ProductCard extends Component {
       if(!alreadyInBasket) {
         BasketDataService.addToBasket(username_, {id: this.props.id, name: this.props.name, price: this.props.price, username: username_, quantity: 1})
       }
+      this.refreshCard()
     })
   }
 
@@ -39,7 +67,8 @@ class ProductCard extends Component {
         </div>
           <h1 className='name'>{this.props.name}</h1>
             <h1 className="price text-success mt-4">${this.props.price}</h1>
-            <button className="btn btn-danger" onClick={()=>this.moveToBasketClicked(this.props)} >Add to cart</button>
+            {this.showQuantity()} 
+            <button className="btn addbtn btn-danger" onClick={()=>this.moveToBasketClicked(this.props)} >Add to cart</button>
       </div>
     )
   }

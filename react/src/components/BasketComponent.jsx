@@ -14,7 +14,7 @@ class BasketComponent extends Component {
     
   }
   this.deleteProductClicked = this.deleteProductClicked.bind(this);
-  this.refreshBasket = this.refreshBasket.bind(this);   
+  this.CheckoutClicked = this.CheckoutClicked.bind(this);  
 }
 
 
@@ -36,6 +36,7 @@ class BasketComponent extends Component {
   }
 
   deleteProductClicked(productname, id) {
+    console.log('a')
     let username = AuthenticationService.getLoggedInUsername()
     //console.log(id + " " +username);
     BasketDataService.deleteProduct(username, id)
@@ -45,6 +46,10 @@ class BasketComponent extends Component {
         this.refreshBasket()
       }
     )
+  }
+
+  CheckoutClicked(){
+  console.log('a')
   }
 
   render()
@@ -78,13 +83,12 @@ class BasketComponent extends Component {
                   </th>
                 </tr>
               )
+              
             }
   </tbody>
 </table>
-<h3>
-Total: ${this.state.total}
-</h3>
-<Link className="nav-link" to="/login"><button className="btn btn-success">Checkout</button></Link>
+<h3>Total: ${this.state.total}</h3>
+<th><button className="btn btn-success" onClick={this.CheckoutClicked}>Checkout</button></th>
       </div>  
     )
   }
