@@ -42,10 +42,20 @@ public class BasketHardcodedService {
 	}
 	
 	public BasketProduct addNew(Product product) {
-		BasketProduct basketproduct = new BasketProduct(product.getId(), product.getName(), 10, "admin", 1);
-		basket.add(basketproduct);
-		return basketproduct;
-	}
-	
-	
+		BasketProduct newBasket = findById(product.getId());
+		if (newBasket==null) {
+			BasketProduct basketproduct = new BasketProduct(product.getId(), product.getName(), 10, "admin", 1);
+			basket.add(basketproduct);
+			return basketproduct;
+		}
+		else {
+			newBasket.setQuantity(newBasket.getQuantity()+1);
+			deleteById(newBasket.getId());
+			basket.add(newBasket);
+			return newBasket;
+		}
+		}
 }
+	
+	
+
