@@ -9,7 +9,8 @@ class BasketComponent extends Component {
 
     this.state = {
       products : [],
-      message : null
+      message : null,
+      total : 0
     
   }
   this.deleteProductClicked = this.deleteProductClicked.bind(this);
@@ -27,7 +28,11 @@ class BasketComponent extends Component {
     .then(response => {
       console.log(response)
       this.setState({products: response.data})
+      let newTotal=0;
+      this.state.products.map(product=>newTotal=newTotal+product.quantity*product.price)
+      this.setState({total:newTotal} )
     })
+    
   }
 
   deleteProductClicked(productname, id) {
@@ -77,6 +82,7 @@ class BasketComponent extends Component {
             }
   </tbody>
 </table>
+{this.state.total}
 <Link className="nav-link" to="/login"><button className="btn btn-success">Checkout</button></Link>
       </div>  
     )

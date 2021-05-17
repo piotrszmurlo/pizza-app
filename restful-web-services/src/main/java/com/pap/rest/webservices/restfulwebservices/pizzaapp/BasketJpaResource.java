@@ -52,6 +52,6 @@ public class BasketJpaResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newBasketProduct.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 		
-	}
+	}	
 	
 }
