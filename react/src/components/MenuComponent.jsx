@@ -10,6 +10,11 @@ class MenuComponent extends Component {
     }
   }
 
+  addCartInfo(productname)
+  {
+    this.setState({message:`You just added ${productname} to the Basket!`})
+  }
+
   componentDidMount(){
     if(this.props.match.params.id==null){
     MenuDataService.retrieveAllProducts()
@@ -25,7 +30,7 @@ class MenuComponent extends Component {
     }
   }
 
-  render() {
+  render() { 
     return(
       <div className="container">
       <h3 className='header'>Menu</h3>
@@ -34,10 +39,9 @@ class MenuComponent extends Component {
       <tbody>
         {this.state.rows.map(row => { return(
           <tr key={row[0].id}>
-            {console.log(row[0].name)}
-            <td><ProductCard id={row[0].id} name={row[0].name} picture={IMG_PATH + row[0].name + '.png'} price={row[0].price}></ProductCard></td>
-            {row.length > 1 && <td><ProductCard id={row[1].id} name={row[1].name} picture={IMG_PATH + row[1].name + '.png'} price={row[1].price}></ProductCard></td>}
-            {row.length > 2 && <td><ProductCard id={row[2].id} name={row[2].name} picture={IMG_PATH + row[2].name + '.png'} price={row[2].price}></ProductCard></td>}
+            <td><ProductCard id={row[0].id} name={row[0].name} picture={IMG_PATH + row[0].name + '.png'} price={row[0].price} message={this.state.message} ></ProductCard></td>
+            {row.length > 1 && <td><ProductCard id={row[1].id} name={row[1].name} picture={IMG_PATH + row[1].name + '.png'} price={row[1].price} message={this.state.message}></ProductCard></td>}
+            {row.length > 2 && <td><ProductCard id={row[2].id} name={row[2].name} picture={IMG_PATH + row[2].name + '.png'} price={row[2].price} message={this.state.message}></ProductCard></td>}
           </tr>
         )})}
         </tbody>

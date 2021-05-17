@@ -25,13 +25,14 @@ color: rgb(179, 6, 6);
   width: 150px;
 }
 .productcard{
+  position: relative;
   text-align: center;
   border-color: rgba(200, 199, 199, 0.513);
   border-style: outset;
   border-width: 5px;
   border-radius: 20px;
   width: 300px;
-  height: 400px;
+  height: 380px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -47,6 +48,12 @@ color: rgb(179, 6, 6);
   to {
     transform: rotate(360deg);
   }
+}
+
+.addbtn{
+  position:absolute;
+  bottom : 20px;
+  left: 32%;
 }
 
 .field{

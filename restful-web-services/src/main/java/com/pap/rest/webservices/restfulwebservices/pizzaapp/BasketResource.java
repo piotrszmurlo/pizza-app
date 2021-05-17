@@ -25,8 +25,8 @@ public class BasketResource {
 	@GetMapping("/user/{username}/basket")
 	public List<BasketProduct> getBasket(@PathVariable String username){
 		return basketService.findBasket();
-		
 	}
+	
 	//DELETE
 	@DeleteMapping("/user/{username}/basket/{id}")
 	public ResponseEntity<Void> deleteProduct(@PathVariable String username, @PathVariable long id){
