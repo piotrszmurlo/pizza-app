@@ -38,7 +38,6 @@ class BasketComponent extends Component {
   deleteProductClicked(productname, id) {
     console.log('a')
     let username = AuthenticationService.getLoggedInUsername()
-    //console.log(id + " " +username);
     BasketDataService.deleteProduct(username, id)
     . then(
       responde => {
@@ -58,7 +57,7 @@ class BasketComponent extends Component {
         this.refreshBasket()
       }
     )
-    this.setState({ message: `You just ordered succesful`})
+    this.setState({ message: `You just ordered succesfuly`})
   })
   }
 
