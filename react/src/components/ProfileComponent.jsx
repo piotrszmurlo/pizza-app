@@ -42,7 +42,9 @@ class ProfileComponent extends Component {
     <h3>Your login is: {this.state.username}</h3>
     <h3>Adress of delivery is: {this.state.street} {this.state.streetNumber}, {this.state.city}</h3>
 
-    <h3>Before delivery we will call to you on the number: {this.state.number}</h3>
+
+
+    <h3>Before delivery we will call you on the number: {this.state.number}</h3>
 
     </div>)
   }

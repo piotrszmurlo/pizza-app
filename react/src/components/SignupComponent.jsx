@@ -15,17 +15,18 @@ class SignupComponent extends Component {
       street: '',
       streetNumber: '',
       userAlreadyExists: false,
-      badInput: false
+      badInput: false,
+      wannaBeAdmin: false
     }
     this.handleRegistration= this.handleRegistration.bind(this)
     this.signupClicked = this.signupClicked.bind(this)
   }
   
   signupClicked(){
-    if(this.state.username.includes("admin")){
-      this.setState({badInput: true})
-    }
-    else if (this.state.username === '' || this.state.password === '' || this.state.name === '' || this.state.surname === '' || this.state.number === '' || this.state.city === '' || this.state.street === '' || this.state.streetNumber === ''){
+    // if(this.state.username.includes("admin")){
+    //   this.setState({wannaBeAdmin: true})
+    // }
+    if (this.state.username === '' || this.state.password === '' || this.state.name === '' || this.state.surname === '' || this.state.number === '' || this.state.city === '' || this.state.street === '' || this.state.streetNumber === ''){
       this.setState({badInput: true})
       return
     }
@@ -59,6 +60,7 @@ class SignupComponent extends Component {
       <div>
         {this.state.userAlreadyExists && <div className="alert alert-warning">Username already exists</div>}
         {this.state.badInput && <div className="alert alert-warning">Fields cannot be empty</div>}
+        {this.state.wannaBeAdmin && <div className="alert alert-warning">You can't have admin in the nickname!</div>}
         <div className='span2'>
         <div className='signup-outer-card'>
         <div className="signup-card">

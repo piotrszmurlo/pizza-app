@@ -15,7 +15,9 @@ class BasketComponent extends Component {
       orderDate : today.getFullYear() + '-' + today.getMonth()+ '-' + today.getDate() + ', '+ today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds(),
   }
   this.deleteProductClicked = this.deleteProductClicked.bind(this);
-  this.CheckoutClicked = this.CheckoutClicked.bind(this);  
+  this.checkoutClicked = this.checkoutClicked.bind(this); 
+  this.addOne = this.addOne.bind(this);
+  this.minusOne = this.minusOne.bind(this);
 }
 
 
@@ -48,7 +50,7 @@ class BasketComponent extends Component {
     )
   }
 
-  CheckoutClicked(){
+  checkoutClicked(){
   let username = AuthenticationService.getLoggedInUsername()
   //komenda move to basket history
   this.state.products.map(product=>{
@@ -64,6 +66,39 @@ class BasketComponent extends Component {
   })
   }
 
+  addOne(product){
+    let username_ = AuthenticationService.getLoggedInUsername()
+    BasketDataService.retrieveBasket(username_)
+      .then(response => {
+      for(let i = 0; i < response.data.length; i += 1){
+        if(response.data[i].name === product.name){
+          BasketDataService.deleteProduct(username_, response.data[i].id)
+          BasketDataService.addToBasket(username_,{id: product.id, name: product.name, price: product.price, username: username_, quantity: response.data[i].quantity+1})
+          .then(response=>
+          this.refreshBasket())
+          break
+        }
+    }
+  })}
+
+  minusOne(product){
+    let username_ = AuthenticationService.getLoggedInUsername()
+    BasketDataService.retrieveBasket(username_)
+      .then(response => {
+      for(let i = 0; i < response.data.length; i += 1){
+        if(response.data[i].name === product.name){
+          BasketDataService.deleteProduct(username_, response.data[i].id)
+          .then(response=>this.refreshBasket())
+          if (response.data[i].quantity>1){
+          BasketDataService.addToBasket(username_,{id: product.id, name: product.name, price: product.price, username: username_, quantity: response.data[i].quantity-1})
+          .then(response=>
+          this.refreshBasket())
+          break
+        }
+
+    }}
+  })}
+  
   render()
   {
     return(
@@ -81,17 +116,15 @@ class BasketComponent extends Component {
           </thead>
           <tbody>
             {
-              this.state.products.map(
+              this.state.orders.map(
                 product =>
                 <tr key={product.id}> 
-                  <th>
-                  <img src={require(`${IMG_PATH}${product.name}.png`).default} alt={product.name} width="60"></img>
-                  {product.name}
-                  </th>
                   <td>{product.quantity}</td>
                   <td>${product.price}</td>
                   <td>${product.quantity*product.price}</td>
-                  <th> <button className="btn btn-danger" onClick={() => this.deleteProductClicked(product.name, product.id)}>Remove</button>
+                  <th><button className="btn btn-warning" onClick={() => this.minusOne(product)}>-</button> 
+                    <button className="btn btn-success" onClick={() => this.addOne(product)}>+</button> 
+                    <button className="btn btn-danger" onClick={() => this.deleteProductClicked(product.name, product.id)}>Remove</button>
                   </th>
                 </tr>
               )
@@ -100,7 +133,7 @@ class BasketComponent extends Component {
   </tbody>
 </table>
 <h3>Total: ${this.state.total}</h3>
-<th><button className="btn btn-success" onClick={this.CheckoutClicked}>Checkout</button></th>
+<th><button className="btn btn-success" onClick={this.checkoutClicked}>Checkout</button></th>
       </div>  
     )
   }
