@@ -83,10 +83,12 @@
   width: 450px;
   height: 1000px;
   border-style: groove;
+  /* background-color: rgb(243, 243, 243); */
 }
 
 .signup-card{
   margin: 0 auto;
-  width: 250px;
-  height: 450px;
+  width: 350px;
+  height: 1000px;
+  /* background-color: rgb(224, 224, 224); */
 }

@@ -67,17 +67,17 @@ class LoginComponent extends Component {
     return (
       <div className='container'>
         {this.state.hasLoginFailed && <div className="alert alert-warning">Invalid credentials</div>}
-      <div className='login-outer-card'>
-     <div className="login-card">
-        <h3 className='Login-header'>Logowanie</h3><br /><br />
-        Username: <input  type="text" name="username" placeholder="input your username" onChange={this.handleChange} className="form-control"/><br />
-        Password: <input type="password" name="password" placeholder="••••••••" value={this.state.password} onChange={this.handleChange} className="form-control"/><br /><br />
-          <button onClick={this.loginClicked} className="btn btn-danger btn-lg">Login</button>
-          <div className='signup'>
-          <button onClick={this.newRegistration} className="btn btn-danger btn-lg">Sign up</button></div>
-    </div>
-    </div>
-    </div>
+        <div className='login-outer-card'>
+          <div className="login-card">
+            <h3 className='Login-header'>Logowanie</h3><br /><br />
+              Username: <input  type="text" name="username" placeholder="input your username" onChange={this.handleChange} className="form-control"/><br />
+              Password: <input type="password" name="password" placeholder="••••••••" value={this.state.password} onChange={this.handleChange} className="form-control"/><br /><br />
+              <button onClick={this.loginClicked} className="btn btn-danger btn-lg">Login</button>
+              <div className='signup'>
+              <button onClick={this.newRegistration} className="btn btn-danger btn-lg">Sign up</button></div>
+          </div>
+        </div>
+      </div>
       )
   }
 }

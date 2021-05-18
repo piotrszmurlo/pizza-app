@@ -3,9 +3,15 @@ import {JPA_API_URL, GUEST_TOKEN} from '../../constants.js'
 
 class SignupDataService {
   
-  // retrieveBasket(name){
-  //   return axios.get(`${JPA_API_URL}/user/${name}/basket`)
-  // }
+  doesUserExist(username){
+    return axios.get(`${JPA_API_URL}/user/${username}`, {headers: {authorization: GUEST_TOKEN}})
+    // .then(response => {
+    //     if(response.data == ''){
+    //       return false
+    //     }
+    //     return true
+    // })
+  }
   
   // deleteProduct(name, id){
   //   return axios.delete(`${JPA_API_URL}/user/${name}/basket/${id}`)
