@@ -25,7 +25,8 @@ class HeaderComponent extends Component {
             {!isUserLoggedIn && <li><Link className="nav-link" to="/login">Login</Link></li>}
             {!isAdmin && isUserLoggedIn && <li><Link className="nav-link" to={`/profile/${AuthenticationService.getLoggedInUsername()}`}>Profile</Link></li>}
             {isUserLoggedIn && <li><Link className="nav-link" to="/logout" onClick={AuthenticationService.logout}>Logout</Link></li>}
-            {isAdmin && isUserLoggedIn && <li><Link className="nav-link" to="/adminPanel">Admin Panel </Link></li>}
+            {isAdmin && isUserLoggedIn && <li><Link className="nav-link" to="/adminPanel">Orders</Link></li>}
+            {isAdmin && isUserLoggedIn && <li><Link className="nav-link" to="/viewUsers">Users</Link></li>}
           </ul>
         </nav>
       </header>

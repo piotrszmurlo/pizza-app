@@ -14,7 +14,7 @@ class SignupDataService {
     // })
   }
   
-  getAllUsers(){
+  getUsers(){
     if(AuthenticationService.isLoggedInUserAdmin()){
       return axios.get(`${JPA_API_URL}/users`)
     }
