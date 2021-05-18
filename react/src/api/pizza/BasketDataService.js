@@ -37,7 +37,6 @@ class BasketDataService {
   createSoldProduct(username, soldProduct){
     return axios.post(`${JPA_API_URL}/user/${username}/sale`, soldProduct)
   }
-
   
   
 }

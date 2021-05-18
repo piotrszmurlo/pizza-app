@@ -15,6 +15,15 @@ class AdminComponent extends Component {
     })
   }
 
+  getTotal(order){
+    //order.id
+    let total = 0
+    for(let i = 0; i<order.products.length;i++){
+      total += (order.products[i].price*order.products[i].quantity)
+    }
+    return <h5>${total}</h5>
+  }
+
   componentDidMount(){
     this.getOrders()
   }
@@ -33,7 +42,7 @@ class AdminComponent extends Component {
              <th>Order number</th>
              <th>Username</th>
              <th>Date</th>
-             <th>Complete?</th>
+             <th>Completed?</th>
              <th>Total</th>
             </tr>
           </thead>
@@ -46,6 +55,7 @@ class AdminComponent extends Component {
                   <td>{order.user.username}</td>
                   <td>{order.orderDate}</td>
                   <td><button onClick={() => this.markOrderAsCompleted(order)} className="btn btn-danger btn-lg">Complete order</button></td>
+                  <td>{this.getTotal(order)}</td>
                 </tr></>
               )
               
