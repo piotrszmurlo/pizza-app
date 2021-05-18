@@ -57,6 +57,12 @@ values(10010, 'Hazardzista23','$2a$10$0NVs/zo5fdOVgzXHf62raOy/nD/tg0Zh1.R7x1hjcE
 insert into jwt_user_details(user_id, username, password, name, surname, number,city, street, street_number)
 values(10011, 'guest','$2a$10$ukUVBZd2PT08tGBh8jXIYOrNi3U4ohdzarq/kWtI2FpT4ebmsDgS.', '', '', '', '', '', '');
 
+insert into jwt_user_details(user_id, username, password, name, surname, number,city, street, street_number)
+values(10012, 'dzikus12PL','$2a$10$No1YXn7x.0pd6TM8iGfHGeIyv0G3EI88sRKrmHe/eZERKwr3iVthm', 'Bartosz', 'Grabowiecki', '513513425', 'Warszawa', 'Lodowa', '13');
+
+insert into jwt_user_details(user_id, username, password, name, surname, number,city, street, street_number)
+values(10013, 'dzikus12PL','$2a$10$0NVs/zo5fdOVgzXHf62raOy/nD/tg0Zh1.R7x1hjcETLFt52RqcoC', 'Michal', 'Wysocki', '983745454', 'Warszawa', 'Walki Zwiazku Mlodych', '66');
+
 
 
 insert into products_order(order_id, is_completed, order_date, user_id)
