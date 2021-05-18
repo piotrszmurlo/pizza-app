@@ -24,9 +24,9 @@ class HeaderComponent extends Component {
             {!isAdmin && isUserLoggedIn && <Link className="nav-link" to={`/basket/${AuthenticationService.getLoggedInUsername()}`}><img src={basket_image} className='basket_image_header' alt='basket' height='25px' ></img></Link>}
             {!isUserLoggedIn && <li><Link className="nav-link" to="/login">Login</Link></li>}
             {!isAdmin && isUserLoggedIn && <li><Link className="nav-link" to={`/profile/${AuthenticationService.getLoggedInUsername()}`}>Profile</Link></li>}
-            {isUserLoggedIn && <li><Link className="nav-link" to="/logout" onClick={AuthenticationService.logout}>Logout</Link></li>}
             {isAdmin && isUserLoggedIn && <li><Link className="nav-link" to="/adminPanel">Orders</Link></li>}
             {isAdmin && isUserLoggedIn && <li><Link className="nav-link" to="/viewUsers">Users</Link></li>}
+            {isUserLoggedIn && <li><Link className="nav-link" to="/logout" onClick={AuthenticationService.logout}>Logout</Link></li>}
           </ul>
         </nav>
       </header>
