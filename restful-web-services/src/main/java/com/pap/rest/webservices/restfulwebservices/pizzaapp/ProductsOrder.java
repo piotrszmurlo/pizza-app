@@ -27,13 +27,13 @@ public class ProductsOrder {
 	private Long id;
 	@OneToMany(mappedBy = "productsOrder")
 	@JsonIgnoreProperties("productsOrder")
-	private Set<BasketProduct> products;
+	private Set<SoldProduct> products;
 	private boolean isCompleted;
 	public Long getId() {
 		return id;
 	}
 
-	public ProductsOrder(Long id, Set<BasketProduct> products, boolean isCompleted, String orderDate, JwtUserDetails user) {
+	public ProductsOrder(Long id, Set<SoldProduct> products, boolean isCompleted, String orderDate, JwtUserDetails user) {
 		super();
 		this.id = id;
 		this.products = products;
@@ -46,11 +46,11 @@ public class ProductsOrder {
 		this.id = id;
 	}
 
-	public Set<BasketProduct> getProducts() {
+	public Set<SoldProduct> getProducts() {
 		return products;
 	}
 
-	public void setProducts(Set<BasketProduct> products) {
+	public void setProducts(Set<SoldProduct> products) {
 		this.products = products;
 	}
 

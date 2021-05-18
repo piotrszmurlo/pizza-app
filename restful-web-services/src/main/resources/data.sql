@@ -34,9 +34,9 @@ values(10002, 'pepe','$2a$10$3zHzb.Npv1hfZbLEU5qsdOju/tk2je6W6PnNnY.c1ujWPcZh4PL
 insert into products_order(order_id, is_completed, order_date, user_id)
 values(1010,false,'12-12-12', '10002');
 --
-insert into basket_product(id,name,price,username,quantity, order_id)
-values(10001, 'margharita', 10,'pepe', 4, 1010);
---
+--insert into basket_product(id,name,price,username,quantity, order_id)
+--values(10001, 'margharita', 10,'pepe', 4, 1010);
+----
 --insert into basket_product(id,name,price,username,quantity)
 --values(10002, 'pepperoni', 10,'in28minutes', 4);
 --

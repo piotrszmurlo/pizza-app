@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-public class BasketProduct {
+public class SoldProduct {
 	
 	@Id
 	@GeneratedValue
@@ -19,22 +19,21 @@ public class BasketProduct {
 	private int price;
 	private String username;
 	private int quantity;
-//	@ManyToOne
-//	@JoinColumn(name="ORDER_ID", nullable = true)
+	@ManyToOne
+	@JoinColumn(name="ORDER_ID", nullable = false)
+	private ProductsOrder productsOrder;
 	
-//	private ProductsOrder productsOrder;
-	
-	protected BasketProduct() {
+	protected SoldProduct() {
 	}
 	
-	public BasketProduct(Long id, String name, int price, String username, int quantity) {
+	public SoldProduct(Long id, String name, int price, String username, int quantity, ProductsOrder productsOrder) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.username = username;
 		this.quantity = quantity;
-//		this.productsOrder = productsOrder;
+		this.productsOrder = productsOrder;
 	}
 	
 	public Long getId() {
@@ -95,9 +94,17 @@ public class BasketProduct {
 			return false;
 		if(getClass()!=obj.getClass())
 			return false;
-		BasketProduct other = (BasketProduct) obj;
+		SoldProduct other = (SoldProduct) obj;
 		if(id != other.id)
 			return false;
 		return true;
+	}
+
+	public ProductsOrder getProductsOrder() {
+		return productsOrder;
+	}
+
+	public void setProductsOrder(ProductsOrder productsOrder) {
+		this.productsOrder = productsOrder;
 	}
 }
