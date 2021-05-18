@@ -49,13 +49,13 @@ class ProductCard extends Component {
           if(response.data[i].name === this.props.name){
             alreadyInBasket = true
             BasketDataService.deleteProduct(username_, response.data[i].id)
-            BasketDataService.addToBasket(username_,{id: this.props.id, name: this.props.name, price: this.props.price, username: username_, quantity: response.data[i].quantity+1})
+            BasketDataService.addToBasket(username_,{id: this.props.id, name: this.props.name, price: this.props.price, username: username_, quantity: response.data[i].quantity+1, orderId: -1})
             this.refreshCard()
             break
           }
         }
         if(!alreadyInBasket) {
-           BasketDataService.addToBasket(username_, {id: this.props.id, name: this.props.name, price: this.props.price, username: username_, quantity: 1})
+           BasketDataService.addToBasket(username_, {id: this.props.id, name: this.props.name, price: this.props.price, username: username_, quantity: 1, orderId: -1})
            .then(response=>{
             console.log('dodaje nowy')
             this.refreshCard()

@@ -20,7 +20,7 @@ public class BasketProduct {
 	private String username;
 	private int quantity;
 	@ManyToOne
-	@JoinColumn(name="ORDER_ID", nullable = false)
+	@JoinColumn(name="ORDER_ID", nullable = true)
 	
 	private ProductsOrder productsOrder;
 	

@@ -26,6 +26,10 @@ class BasketDataService {
     return axios.post(`${JPA_API_URL}/user/${name}/basket/`, product);
   }
 
+  addToOrderHistory(){
+    
+  }
+
   
   
 }

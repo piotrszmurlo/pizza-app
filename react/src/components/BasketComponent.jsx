@@ -119,6 +119,10 @@ class BasketComponent extends Component {
               this.state.products.map(
                 product =>
                 <tr key={product.id}> 
+                <th>
+                  <img src={require(`${IMG_PATH}${product.name}.png`).default} alt={product.name} width="60"></img>
+                  {product.name}
+                  </th>
                   <td>{product.quantity}</td>
                   <td>${product.price}</td>
                   <td>${product.quantity*product.price}</td>
