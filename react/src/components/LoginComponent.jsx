@@ -36,11 +36,10 @@ class LoginComponent extends Component {
         [event.target.name]:
         event.target.value})
   }
+
   newRegistration() {
     this.props.history.push("/signup")
   }
-
-
 
   render(){
     return (

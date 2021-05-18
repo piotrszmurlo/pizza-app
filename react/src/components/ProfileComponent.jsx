@@ -4,7 +4,7 @@ import SignupDataService from '../api/pizza/SignupDataService.js'
 
 class ProfileComponent extends Component {
 
-  constructor(props){
+  constructor(props) {
   super(props)
   this.state={
     username: "",
@@ -14,13 +14,15 @@ class ProfileComponent extends Component {
     city: '',
     street: '',
     streetNumber: '',
+
   }}
 
-  componentDidMount(){
+  componentDidMount() {
   let username = AuthenticationService.getLoggedInUsername()
   SignupDataService.doesUserExist(username)
   .then(response=>{
     this.setState({
+
       username:response.data.username,
       name: response.data.name,
       surname: response.data.surname,
@@ -28,13 +30,11 @@ class ProfileComponent extends Component {
       city: response.data.city,
       street: response.data.street,
       streetNumber: response.data.streetNumber,
-      
-    })
-  })
-  
+
+    })})
   }
 
-  render(){
+  render() {
     return(
     <div>
       <h1>Hey {this.state.name}</h1>
