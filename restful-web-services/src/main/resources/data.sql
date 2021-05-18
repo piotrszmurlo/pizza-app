@@ -30,8 +30,6 @@ values(10010, 'quattro formaggi', 15);
 
 insert into jwt_user_details(user_id, username, password, name, surname, number,city, street, street_number)
 values(10002, 'pepe','$2a$10$3zHzb.Npv1hfZbLEU5qsdOju/tk2je6W6PnNnY.c1ujWPcZh4PL6e', 'Piotr', 'Zagorski', '123123123', 'Grodno', 'Bialostocka', '12');
-insert into jwt_user_details(user_id, username, password, name, surname, number,city, street, street_number)
-values(10003, 'admin','$2a$10$3zHzb.Npv1hfZbLEU5qsdOju/tk2je6W6PnNnY.c1ujWPcZh4PL6e', 'Piotr', 'Zagorski', '123123123', 'Grodno', 'Bialostocka', '12');
 
 insert into jwt_user_details(user_id, username, password, name, surname, number,city, street, street_number)
 values(10003, 'logotyp','$2a$10$No1YXn7x.0pd6TM8iGfHGeIyv0G3EI88sRKrmHe/eZERKwr3iVthm', 'Ziotr', 'Pagorski', '123123123', 'Warszawa', 'ZWM', '7');
@@ -55,7 +53,7 @@ insert into jwt_user_details(user_id, username, password, name, surname, number,
 values(10009, 'Wysoooki','$2a$10$Uyx3zQfPG0Q0/osJnY.qnu1ADQk9N7ph.narS2ufOSUE4qnZ5c/sm', 'Piotr', 'Wyszynski', '929292928', 'Wroclaw', 'Wyspiarska', '93');
 
 insert into jwt_user_details(user_id, username, password, name, surname, number,city, street, street_number)
-values(100010, 'Hazardzista23','$2a$10$0NVs/zo5fdOVgzXHf62raOy/nD/tg0Zh1.R7x1hjcETLFt52RqcoC', 'Piotr', 'Wasiluk', '123451234', 'Warszawa', 'Curie', '19');
+values(10010, 'Hazardzista23','$2a$10$0NVs/zo5fdOVgzXHf62raOy/nD/tg0Zh1.R7x1hjcETLFt52RqcoC', 'Piotr', 'Wasiluk', '123451234', 'Warszawa', 'Curie', '19');
 
 
 
@@ -63,8 +61,8 @@ values(100010, 'Hazardzista23','$2a$10$0NVs/zo5fdOVgzXHf62raOy/nD/tg0Zh1.R7x1hjc
 insert into products_order(order_id, is_completed, order_date, user_id)
 values(1010,false,'12-12-12', '10002');
 --
-insert into sold_product(id,name,price,username,quantity, order_id)
-values(10001, 'margharita', 10,'pepe', 4, 1010);
+--insert into basket_product(id,name,price,username,quantity, order_id)
+--values(10001, 'margharita', 10,'pepe', 4, 1010);
 ----
 --insert into basket_product(id,name,price,username,quantity)
 --values(10002, 'pepperoni', 10,'in28minutes', 4);
