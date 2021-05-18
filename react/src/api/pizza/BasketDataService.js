@@ -11,6 +11,10 @@ class BasketDataService {
     return axios.delete(`${JPA_API_URL}/user/${name}/basket/${id}`)
   }
 
+  deleteBasket(name){
+    return axios.delete(`${JPA_API_URL}/user/${name}/basket`)
+  }
+
   retrieveBasketProduct(name, id){
     return axios.get(`${JPA_API_URL}/user/${name}/basket/${id}`)
   }
@@ -22,9 +26,7 @@ class BasketDataService {
     return axios.post(`${JPA_API_URL}/user/${name}/basket/`, product);
   }
 
-  deleteProduct(name, id){
-    return axios.delete(`${JPA_API_URL}/user/${name}/basket/${id}`)
-  }
+  
   
 }
 export default new BasketDataService()

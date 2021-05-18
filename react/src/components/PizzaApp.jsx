@@ -9,6 +9,7 @@ import HeaderComponent from './HeaderComponent.jsx'
 import ErrorComponent from './ErrorComponent.jsx'
 import WelcomeUserComponent from './WelcomeUserComponent.jsx'
 import WelcomeComponent from './WelcomeComponent.jsx'
+import ProfileComponent from './ProfileComponent.jsx'
 import LogoutComponent from './LogoutComponent.jsx'
 import FooterComponent from './FooterComponent.jsx'
 
@@ -26,7 +27,8 @@ class PizzaApp extends Component {
               <Route path="/login" component={LoginComponent}/>
               <Route path="/signup" component={SignupComponent}/>
               <AuthenticatedRoute path="/basket/:name" component={BasketComponent}/> 
-              <AuthenticatedRoute path="/logout" component={LogoutComponent}/> 
+              <AuthenticatedRoute path="/logout" component={LogoutComponent}/>
+              <AuthenticatedRoute path="/profile/:name" component={ProfileComponent}/>  
               <AuthenticatedRoute path="/welcome/:name" component={WelcomeUserComponent}/> 
               <Route component={ErrorComponent}/>
             </Switch>

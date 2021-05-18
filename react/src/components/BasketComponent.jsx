@@ -49,7 +49,17 @@ class BasketComponent extends Component {
   }
 
   CheckoutClicked(){
-  console.log('a')
+  let username = AuthenticationService.getLoggedInUsername()
+  //komenda move to basket history
+  this.state.products.map(product=>{
+    BasketDataService.deleteProduct(username, product.id)
+    . then(
+      response => {
+        this.refreshBasket()
+      }
+    )
+    this.setState({ message: `You just ordered succesful`})
+  })
   }
 
   render()

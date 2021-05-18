@@ -9,17 +9,19 @@ class ProductCard extends Component {
    super(props)
    this.moveToBasketClicked=this.moveToBasketClicked.bind(this);
    this.state ={
-     quantity : 0
+     quantity : 0,
+     message: ""
    }
   }
 
   componentDidMount(){
+    if (AuthenticationService.isUserLoggedIn()){
     this.refreshCard()
-    }
+    }}
   
   refreshCard(){
     let username = AuthenticationService.getLoggedInUsername()
-  BasketDataService.retrieveBasket(username)
+    BasketDataService.retrieveBasket(username)
     .then(response => { for(let i = 0; i < response.data.length; i ++){
       if ( response.data[i].name===this.props.name){
         this.setState({quantity: response.data[i].quantity})
@@ -38,24 +40,34 @@ class ProductCard extends Component {
 
   moveToBasketClicked(product)
   {
-    let username_ = AuthenticationService.getLoggedInUsername()
-    let alreadyInBasket = false
-    BasketDataService.retrieveBasket(username_)
-    .then(response => {
-      for(let i = 0; i < response.data.length; i += 1){
-        if(response.data[i].name === this.props.name){
-          console.log(response.data[i].id)
-          alreadyInBasket = true
-          BasketDataService.deleteProduct(username_, response.data[i].id)
-          BasketDataService.addToBasket(username_,{id: this.props.id, name: this.props.name, price: this.props.price, username: username_, quantity: response.data[i].quantity+1})
-          break
+    if (AuthenticationService.isUserLoggedIn()){
+      let username_ = AuthenticationService.getLoggedInUsername()
+      let alreadyInBasket = false
+      BasketDataService.retrieveBasket(username_)
+      .then(response => {
+        for(let i = 0; i < response.data.length; i += 1){
+          if(response.data[i].name === this.props.name){
+            alreadyInBasket = true
+            BasketDataService.deleteProduct(username_, response.data[i].id)
+            BasketDataService.addToBasket(username_,{id: this.props.id, name: this.props.name, price: this.props.price, username: username_, quantity: response.data[i].quantity+1})
+            this.refreshCard()
+            break
+          }
         }
-      }
-      if(!alreadyInBasket) {
-        BasketDataService.addToBasket(username_, {id: this.props.id, name: this.props.name, price: this.props.price, username: username_, quantity: 1})
-      }
-      this.refreshCard()
-    })
+        if(!alreadyInBasket) {
+           BasketDataService.addToBasket(username_, {id: this.props.id, name: this.props.name, price: this.props.price, username: username_, quantity: 1})
+           .then(response=>{
+            console.log('dodaje nowy')
+            this.refreshCard()
+           })
+           
+       }
+        
+      })
+  }
+  else{
+    this.setState({message:"You must be logged in"})
+  }
   }
 
 
@@ -67,7 +79,7 @@ class ProductCard extends Component {
         </div>
           <h1 className='name'>{this.props.name}</h1>
             <h1 className="price text-success mt-4">${this.props.price}</h1>
-            {this.showQuantity()} 
+            {this.showQuantity()}{this.state.message}
             <button className="btn addbtn btn-danger" onClick={()=>this.moveToBasketClicked(this.props)} >Add to cart</button>
       </div>
     )

@@ -41,6 +41,11 @@ public class BasketHardcodedService {
 		return null;
 	}
 	
+	public BasketProduct deleteBasket() {
+		basket.clear();
+		return null;
+	}
+	
 	public BasketProduct addNew(Product product) {
 		BasketProduct newBasket = findById(product.getId());
 		if (newBasket==null) {

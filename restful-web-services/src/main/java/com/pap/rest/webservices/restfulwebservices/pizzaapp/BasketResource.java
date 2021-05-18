@@ -38,6 +38,18 @@ public class BasketResource {
 		}
 		return ResponseEntity.notFound().build();
 	}
+	
+	@DeleteMapping("/user/{username}/basket")
+	public ResponseEntity<Void> deleteProduct(@PathVariable String username){
+		
+		BasketProduct product = basketService.deleteBasket();
+		if(product!=null)
+		{
+			return ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.notFound().build();
+	}
+	
 	@GetMapping("/user/{username}/basket/{id}")
 	public BasketProduct getBasket(String username, @PathVariable long id){
 		return basketService.findById(id);
