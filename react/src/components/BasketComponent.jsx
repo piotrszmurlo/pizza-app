@@ -116,7 +116,7 @@ class BasketComponent extends Component {
           </thead>
           <tbody>
             {
-              this.state.orders.map(
+              this.state.products.map(
                 product =>
                 <tr key={product.id}> 
                   <td>{product.quantity}</td>

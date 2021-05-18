@@ -8,8 +8,7 @@ import basket_image from './images/basket.png'
 class HeaderComponent extends Component {
   render() {
     const isUserLoggedIn = AuthenticationService.isUserLoggedIn()
-    const isAdmin = AuthenticationService.isItAdmin()
-    console.log(isUserLoggedIn)
+    const isAdmin = AuthenticationService.isLoggedInUserAdmin()
     return(
       <div className='header1'>
       <header>

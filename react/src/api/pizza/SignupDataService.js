@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {JPA_API_URL, GUEST_TOKEN} from '../../constants.js'
+import AuthenticationService from '../../components/AuthenticationService.js'
 
 class SignupDataService {
   
@@ -13,13 +14,15 @@ class SignupDataService {
     // })
   }
   
-  // deleteProduct(name, id){
-  //   return axios.delete(`${JPA_API_URL}/user/${name}/basket/${id}`)
-  // }
+  getAllUsers(){
+    if(AuthenticationService.isLoggedInUserAdmin()){
+      return axios.get(`${JPA_API_URL}/users`)
+    }
+    else {
+      return null
+    }
+  }
 
-  // addToBasket(name,product, quantity){
-  //   return axios.post(`${JPA_API_URL}/user/${name}/basket/`, product);
-  // }
   registerNewUser(name, details){
     return axios.post(`${JPA_API_URL}/user/${name}`, details, {headers: {authorization: GUEST_TOKEN}});
   }

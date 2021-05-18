@@ -32,20 +32,24 @@ public class ProductsOrderJpaResource {
 	public List<ProductsOrder> getOrdersForUser(@PathVariable long userId) {
 		return productsOrderRepository.findByUserId(userId);
 	}
+
 	@GetMapping("/jpa/order/{orderId}")
 	public ProductsOrder getOrderById(@PathVariable long orderId) {
 		return productsOrderRepository.findById(orderId).get();
 	}
 
 	@PostMapping("/jpa/user/{userId}/order")
-	public ResponseEntity<Void> createOrderForUser(@PathVariable long userId, @RequestBody ProductsOrder productsOrder) {
+	public ResponseEntity<Void> createOrderForUser(@PathVariable long userId,
+			@RequestBody ProductsOrder productsOrder) {
 		ProductsOrder newProductsOrder = productsOrderRepository.save(productsOrder);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{orderId}").buildAndExpand(newProductsOrder.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{orderId}")
+				.buildAndExpand(newProductsOrder.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
-	
+
 	@PutMapping("/jpa/user/{userId}/order/{orderId}")
-	public ResponseEntity<ProductsOrder> updateOrder(@PathVariable long userId, @PathVariable long orderId, @RequestBody ProductsOrder productsOrder){
+	public ResponseEntity<ProductsOrder> updateOrder(@PathVariable long userId, @PathVariable long orderId,
+			@RequestBody ProductsOrder productsOrder) {
 		ProductsOrder updatedProductsOrder = productsOrderRepository.save(productsOrder);
 		return new ResponseEntity<ProductsOrder>(productsOrder, HttpStatus.OK);
 	}

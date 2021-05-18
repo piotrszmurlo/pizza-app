@@ -80,7 +80,7 @@ class ProductCard extends Component {
           <h1 className='name'>{this.props.name}</h1>
             <h1 className="price text-success mt-4">${this.props.price}</h1>
             {this.showQuantity()}{this.state.message}
-            <button className="btn addbtn btn-danger" onClick={()=>this.moveToBasketClicked(this.props)} >Add to cart</button>
+            <button className="btn addbtn btn-danger" onClick={()=>this.moveToBasketClicked(this.props)} >Add to basket</button>
       </div>
     )
   }

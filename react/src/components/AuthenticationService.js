@@ -15,7 +15,7 @@ class AuthenticationService {
     })
   }
 
-  isItAdmin(){
+  isLoggedInUserAdmin(){
     let user = sessionStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
     if(user === "admin") return true
     return false

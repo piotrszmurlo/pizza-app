@@ -31,7 +31,7 @@ public class JwtUserDetailsJpaResource {
 	@Autowired
 	private JwtUserDetailsJpaRepository jwtUserDetailsJpaRepository;
 
-	@GetMapping("/jpa/user")
+	@GetMapping("/jpa/users")
 	public List<JwtUserDetails> getAllUsers(String username) {
 		return jwtUserDetailsJpaRepository.findAll();
 	}
