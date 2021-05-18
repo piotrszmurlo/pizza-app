@@ -55,6 +55,9 @@ values(10009, 'Wysoooki','$2a$10$Uyx3zQfPG0Q0/osJnY.qnu1ADQk9N7ph.narS2ufOSUE4qn
 insert into jwt_user_details(user_id, username, password, name, surname, number,city, street, street_number)
 values(10010, 'Hazardzista23','$2a$10$0NVs/zo5fdOVgzXHf62raOy/nD/tg0Zh1.R7x1hjcETLFt52RqcoC', 'Piotr', 'Wasiluk', '123451234', 'Warszawa', 'Curie', '19');
 
+insert into jwt_user_details(user_id, username, password, name, surname, number,city, street, street_number)
+values(10011, 'guest','$2a$10$ukUVBZd2PT08tGBh8jXIYOrNi3U4ohdzarq/kWtI2FpT4ebmsDgS.', '', '', '', '', '', '');
+
 
 
 
