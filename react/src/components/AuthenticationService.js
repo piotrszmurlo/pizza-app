@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {API_URL} from '../../src/constants.js'
+import {API_URL, JPA_API_URL} from '../../src/constants.js'
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = "authenticatedUser"
 
 class AuthenticationService {
@@ -19,6 +19,11 @@ class AuthenticationService {
     let user = sessionStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
     if(user === "admin") return true
     return false
+  }
+
+  getUser(username){
+    return axios.get(`${JPA_API_URL}/user/${username}`)
+
   }
 
   // createBasicAuthToken(username, password){
