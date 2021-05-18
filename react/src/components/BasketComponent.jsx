@@ -12,7 +12,7 @@ class BasketComponent extends Component {
       products : [],
       message : null,
       total : 0,
-      orderDate : today.getFullYear() + '-' + today.getMonth()+ '-' + today.getDate() + ', '+ today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds(),
+      orderDate : today.getFullYear() + '-' + (today.getMonth()+1)+ '-' + today.getDate() + ', '+ today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds(),
   }
   this.deleteProductClicked = this.deleteProductClicked.bind(this);
   this.checkoutClicked = this.checkoutClicked.bind(this); 
@@ -29,7 +29,6 @@ class BasketComponent extends Component {
   let username = AuthenticationService.getLoggedInUsername()
   BasketDataService.retrieveBasket(username)
     .then(response => {
-      console.log(response)
       this.setState({products: response.data})
       let newTotal=0;
       this.state.products.map(product=>newTotal=newTotal+product.quantity*product.price)
@@ -52,19 +51,39 @@ class BasketComponent extends Component {
 
   checkoutClicked(){
   let username = AuthenticationService.getLoggedInUsername()
+  let user_ = null
+  let allOrders = null
+  let newOrder = null
   //komenda move to basket history
+  //dodawanie do productOrder
+  AuthenticationService.getUser(username)
+  .then(response=>{user_=response.data
+  BasketDataService.createProductsOrder(user_.id, {isCompleted: false, orderDate: this.state.orderDate, user: user_})
+  //dodawanie do soldProduct
+  BasketDataService.getUserOrders(user_.id)
+  .then(response3=>{
+    allOrders=response3.data
+    for(let i = 0;i<allOrders.length;i+=1)
+    if (allOrders[i].completed==false){
+    newOrder = allOrders[i]
+    break
+    }
+    this.state.products.map(product=>{
+      BasketDataService.createSoldProduct(username, {name: product.name, price: product.price, username: username, quantity: product.quantity, productsOrder: newOrder})
+    })
+  
+  //usuwanie
   this.state.products.map(product=>{
     BasketDataService.deleteProduct(username, product.id)
     . then(
       response => {
         this.refreshBasket()
-        console.log(this.state.orderDate)
       }
     )
     this.setState({ message: `You just ordered succesfuly`})
     
-  })
-  }
+    
+  })})})}
 
   addOne(product){
     let username_ = AuthenticationService.getLoggedInUsername()
