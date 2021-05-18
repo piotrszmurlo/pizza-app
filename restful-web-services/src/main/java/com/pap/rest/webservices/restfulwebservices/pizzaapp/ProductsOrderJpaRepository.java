@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductsOrderJpaRepository extends JpaRepository<ProductsOrder, Long>{
-//	List<ProductsOrder> findByUsername(String username);
+	List<ProductsOrder> findByUserId(Long userId);
 }
