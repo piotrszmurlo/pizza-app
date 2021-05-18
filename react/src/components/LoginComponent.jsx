@@ -17,27 +17,6 @@ class LoginComponent extends Component {
   }
   
   loginClicked(){
-    // if(this.state.username==='admin' && this.state.password==='admin'){
-
-    //   this.setState({hasLoginSucceded:true})
-    //   this.setState({hasLoginFailed:false})
-
-    // }
-    // else{
-    //   this.setState({hasLoginSucceded:false})
-    //   this.setState({hasLoginFailed:true})
-    // }
-    // AuthenticationService
-    // .executeBasicAuthenticationService(this.state.username, this.state.password)
-    // .then(() => {
-    //   AuthenticationService.registerSuccesfulLogin(this.state.username, this.state.password);
-    //   this.props.history.push(`/welcome/${this.state.username}`)
-    // }).catch( () => {
-    //   this.setState({hasLoginSucceded:false})
-    //   this.setState({hasLoginFailed:true})
-    // }
-
-    // )
     AuthenticationService
     .executeJwtAuthenticationService(this.state.username, this.state.password)
     .then((response) => {
@@ -57,11 +36,10 @@ class LoginComponent extends Component {
         [event.target.name]:
         event.target.value})
   }
+
   newRegistration() {
     this.props.history.push("/signup")
   }
-
-
 
   render(){
     return (

@@ -3,7 +3,7 @@ import SignupDataService from '../api/pizza/SignupDataService.js'
 import AuthenticationService from '../components/AuthenticationService.js'
 class SignupComponent extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       username: '',
@@ -22,7 +22,7 @@ class SignupComponent extends Component {
     this.signupClicked = this.signupClicked.bind(this)
   }
   
-  signupClicked(){
+  signupClicked() {
     // if(this.state.username.includes("admin")){
     //   this.setState({wannaBeAdmin: true})
     // }
@@ -39,7 +39,7 @@ class SignupComponent extends Component {
         }
         else{
         SignupDataService.registerNewUser(this.state.username, this.state)
-        .then(() =>{
+        .then(() => {
           AuthenticationService
           .executeJwtAuthenticationService(this.state.username, this.state.password)
           .then((response) => {
@@ -48,14 +48,14 @@ class SignupComponent extends Component {
       })})}})}
   }
 
-  handleRegistration(event){
+  handleRegistration(event) {
     this.setState(
       {
         [event.target.name]:
         event.target.value})
   }
 
-  render(){
+  render() {
     return (
       <div>
         {this.state.userAlreadyExists && <div className="alert alert-warning">Username already exists</div>}

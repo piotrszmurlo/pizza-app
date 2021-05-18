@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import propTypes from 'prop-types'
-import MenuComponent from './MenuComponent.jsx'
 import BasketDataService from '../api/pizza/BasketDataService.js'
 import AuthenticationService from './AuthenticationService.js'
 
@@ -8,18 +7,19 @@ class ProductCard extends Component {
   constructor(props) {
    super(props)
    this.moveToBasketClicked=this.moveToBasketClicked.bind(this);
-   this.state ={
+   this.state = {
      quantity : 0,
      message: ""
    }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     if (AuthenticationService.isUserLoggedIn()){
     this.refreshCard()
-    }}
+    }
+  }
   
-  refreshCard(){
+  refreshCard() {
     let username = AuthenticationService.getLoggedInUsername()
     BasketDataService.retrieveBasket(username)
     .then(response => { for(let i = 0; i < response.data.length; i ++){
@@ -28,8 +28,7 @@ class ProductCard extends Component {
       }}})
   }
 
-  showQuantity()
-  {
+  showQuantity() {
     if (this.state.quantity==0){
       return <td></td>
     }
@@ -38,8 +37,7 @@ class ProductCard extends Component {
     }
   }
 
-  moveToBasketClicked(product)
-  {
+  moveToBasketClicked(product) {
     if (AuthenticationService.isUserLoggedIn()){
       let username_ = AuthenticationService.getLoggedInUsername()
       let alreadyInBasket = false
@@ -59,17 +57,12 @@ class ProductCard extends Component {
            .then(response=>{
             console.log('dodaje nowy')
             this.refreshCard()
-           })
-           
-       }
-        
-      })
+      })}})
   }
   else{
     this.setState({message:"You must be logged in"})
+      }
   }
-  }
-
 
   render() {
     return(
