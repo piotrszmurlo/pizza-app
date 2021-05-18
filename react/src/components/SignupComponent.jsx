@@ -22,7 +22,10 @@ class SignupComponent extends Component {
   }
   
   signupClicked(){
-    if (this.state.username === '' || this.state.password === '' || this.state.name === '' || this.state.surname === '' || this.state.number === '' || this.state.city === '' || this.state.street === '' || this.state.streetNumber === ''){
+    if(this.state.username.includes("admin")){
+      this.setState({badInput: true})
+    }
+    else if (this.state.username === '' || this.state.password === '' || this.state.name === '' || this.state.surname === '' || this.state.number === '' || this.state.city === '' || this.state.street === '' || this.state.streetNumber === ''){
       this.setState({badInput: true})
       return
     }
@@ -45,7 +48,6 @@ class SignupComponent extends Component {
   }
 
   handleRegistration(event){
-    console.log(this.state);
     this.setState(
       {
         [event.target.name]:

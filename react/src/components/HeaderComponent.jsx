@@ -8,6 +8,7 @@ import basket_image from './images/basket.png'
 class HeaderComponent extends Component {
   render() {
     const isUserLoggedIn = AuthenticationService.isUserLoggedIn()
+    const isAdmin = AuthenticationService.isItAdmin()
     console.log(isUserLoggedIn)
     return(
       <div className='header1'>
@@ -21,10 +22,11 @@ class HeaderComponent extends Component {
             <Link className="nav-link" to="/menu">Menu</Link>
           </ul>
           <ul className="navbar-nav navbar-collapse justify-content-end">
-            {isUserLoggedIn && <Link className="nav-link" to={`/basket/${AuthenticationService.getLoggedInUsername()}`}><img src={basket_image} className='basket_image_header' alt='basket' height='25px' ></img></Link>}
+            {!isAdmin && isUserLoggedIn && <Link className="nav-link" to={`/basket/${AuthenticationService.getLoggedInUsername()}`}><img src={basket_image} className='basket_image_header' alt='basket' height='25px' ></img></Link>}
             {!isUserLoggedIn && <li><Link className="nav-link" to="/login">Login</Link></li>}
-            {isUserLoggedIn && <li><Link className="nav-link" to={`/profile/${AuthenticationService.getLoggedInUsername()}`}>Profile</Link></li>}
+            {!isAdmin && isUserLoggedIn && <li><Link className="nav-link" to={`/profile/${AuthenticationService.getLoggedInUsername()}`}>Profile</Link></li>}
             {isUserLoggedIn && <li><Link className="nav-link" to="/logout" onClick={AuthenticationService.logout}>Logout</Link></li>}
+            {isAdmin && isUserLoggedIn && <li><Link className="nav-link" to="/adminPanel">Admin Panel </Link></li>}
           </ul>
         </nav>
       </header>
