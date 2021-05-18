@@ -4,7 +4,7 @@ import {Route, Redirect} from 'react-router-dom'
 
 class AdminRoute extends Component {
   render() {
-    if(AuthenticationService.isItAdmin()){
+    if(AuthenticationService.isLoggedInUserAdmin()){
       return <Route {...this.props}/>
     } else{
       return <Redirect to="/login"/>

@@ -26,5 +26,18 @@ class OrderDataService {
   // registerNewUser(name, details){
   //   return axios.post(`${JPA_API_URL}/user/${name}`, details, {headers: {authorization: GUEST_TOKEN}});
   // }
+  getOrders(){
+    if(AuthenticationService.isLoggedInUserAdmin()){
+    return axios.get(`${JPA_API_URL}/orders`)
+    }
+    return null
+  }
+  
+  updateOrder(userId, orderId, productsOrder){
+    if(AuthenticationService.isLoggedInUserAdmin()){
+      return axios.put(`${JPA_API_URL}/user/${userId}/order/${orderId}`, productsOrder)
+      }
+      return null
+  }
 }
 export default new OrderDataService()
