@@ -15,6 +15,11 @@ class AuthenticationService {
     })
   }
 
+  isItAdmin(){
+    let user = sessionStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
+    if(user === "admin") return true
+    return false
+  }
 
   // createBasicAuthToken(username, password){
   //   return 'Basic ' + window.btoa(username + ":" + password)

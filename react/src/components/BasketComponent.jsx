@@ -7,11 +7,12 @@ class BasketComponent extends Component {
   constructor(props){
     super(props);
 
+    var today = new Date();
     this.state = {
       products : [],
       message : null,
-      total : 0
-    
+      total : 0,
+      orderDate : today.getFullYear() + '-' + today.getMonth()+ '-' + today.getDate() + ', '+ today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds(),
   }
   this.deleteProductClicked = this.deleteProductClicked.bind(this);
   this.CheckoutClicked = this.CheckoutClicked.bind(this);  
@@ -55,9 +56,11 @@ class BasketComponent extends Component {
     . then(
       response => {
         this.refreshBasket()
+        console.log(this.state.orderDate)
       }
     )
     this.setState({ message: `You just ordered succesfuly`})
+    
   })
   }
 

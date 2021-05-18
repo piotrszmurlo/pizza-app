@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import AuthenticatedRoute from './AuthenticatedRoute.jsx'
+import AdminRoute from './AdminRoute.jsx'
+import AdminComponent from './AdminComponent'
 import LoginComponent from './LoginComponent.jsx'
 import BasketComponent from './BasketComponent.jsx'
 import MenuComponent from './MenuComponent.jsx'
@@ -26,6 +28,8 @@ class PizzaApp extends Component {
               <Route path="/menu" component={MenuComponent}/>
               <Route path="/login" component={LoginComponent}/>
               <Route path="/signup" component={SignupComponent}/>
+              <AdminRoute path="/adminPanel" component={AdminComponent}/>
+              <AuthenticatedRoute path="/basket/:name" component={BasketComponent}/>
               <AuthenticatedRoute path="/basket/:name" component={BasketComponent}/> 
               <AuthenticatedRoute path="/logout" component={LogoutComponent}/>
               <AuthenticatedRoute path="/profile/:name" component={ProfileComponent}/>  
