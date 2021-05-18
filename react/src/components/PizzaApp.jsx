@@ -22,7 +22,7 @@ class PizzaApp extends Component {
       <div className="bg-light App">
         <Router>
           <>
-              <HeaderComponent/>
+            <HeaderComponent/>
             <Switch>
               <Route path="/" exact component={WelcomeComponent}/>
               <Route path="/menu/:id" component={MenuComponent}/>

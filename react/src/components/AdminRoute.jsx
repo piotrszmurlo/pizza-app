@@ -6,7 +6,8 @@ class AdminRoute extends Component {
   render() {
     if(AuthenticationService.isLoggedInUserAdmin()){
       return <Route {...this.props}/>
-    } else{
+    } 
+    else {
       return <Redirect to="/login"/>
     }
   }

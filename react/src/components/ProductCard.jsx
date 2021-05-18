@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import propTypes from 'prop-types'
-import MenuComponent from './MenuComponent.jsx'
 import BasketDataService from '../api/pizza/BasketDataService.js'
 import AuthenticationService from './AuthenticationService.js'
 
