@@ -1,4 +1,4 @@
-package com.pap.rest.webservices.restfulwebservices.pizzaapp;
+package com.pap.rest.old;
 
 import java.net.URI;
 import java.net.URISyntaxException;

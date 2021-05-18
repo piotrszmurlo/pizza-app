@@ -1,4 +1,4 @@
-package com.pap.rest.webservices.restfulwebservices.pizzaapp;
+package com.pap.rest.old;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +11,8 @@ public class BasketHardcodedService {
 	private static List<BasketProduct> basket = new ArrayList<>();
 	private static long idCounter = 0;
 	
-	static {basket.add(new BasketProduct(++idCounter, "margharita", 10, "admin", 2));
-	basket.add(new BasketProduct(++idCounter, "pepperoni", 10, "admin", 3));
+//	static {basket.add(new BasketProduct(++idCounter, "margharita", 10, "admin", 2));
+//	basket.add(new BasketProduct(++idCounter, "pepperoni", 10, "admin", 3));
 	//basket.add(new BasketProduct(++idCounter, "prosciutto", 10,"admin", 1));
 	}
 	

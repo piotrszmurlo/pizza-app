@@ -3,6 +3,11 @@ package com.pap.rest.webservices.restfulwebservices.pizzaapp;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class BasketProduct {
@@ -14,17 +19,22 @@ public class BasketProduct {
 	private int price;
 	private String username;
 	private int quantity;
+	@ManyToOne
+	@JoinColumn(name="ORDER_ID", nullable = false)
+	
+	private ProductsOrder productsOrder;
 	
 	protected BasketProduct() {
 	}
 	
-	public BasketProduct(Long id, String name, int price, String username, int quantity) {
+	public BasketProduct(Long id, String name, int price, String username, int quantity, ProductsOrder productsOrder) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.username = username;
 		this.quantity = quantity;
+		this.productsOrder = productsOrder;
 	}
 	
 	public Long getId() {
