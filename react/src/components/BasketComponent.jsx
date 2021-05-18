@@ -42,7 +42,7 @@ class BasketComponent extends Component {
     let username = AuthenticationService.getLoggedInUsername()
     BasketDataService.deleteProduct(username, id)
     . then(
-      responde => {
+      response => {
         this.setState({ message: `Delete of product ${productname} Succesful`})
         this.refreshBasket()
       }
