@@ -3,11 +3,13 @@ package com.pap.rest.webservices.restfulwebservices.jwt;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -15,150 +17,192 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.pap.rest.webservices.restfulwebservices.pizzaapp.BasketProduct;
+import com.pap.rest.webservices.restfulwebservices.pizzaapp.ProductsOrder;
 
 @Entity
 public class JwtUserDetails implements UserDetails {
 
-  private static final long serialVersionUID = 5155720064139820502L;
-  
-  @Id
-  @GeneratedValue
-  private final Long id;
-  private final String username;
-  @JsonSetter
-  private String password;
-  
-  @Transient
-  private final Collection<? extends GrantedAuthority> authorities;
-  private String name;
-  private String surname;
-  private String number;
-  private String city;
-  private String street;
-  private String streetNumber;
-  
-  protected JwtUserDetails() {
-	this.id = null;
-	this.username = "";
-	this.password = "";
-	this.authorities = null;
-  }
+	private static final Long serialVersionUID = 5155720064139820502L;
 
-  public JwtUserDetails(Long id, String username, String password, String role, String name, String surname, String number, String city, String street, String streetNumber) {
-    this.id = id;
-    this.username = username;
-    this.password = password;
-    this.name = name;
-    this.surname = surname;
-    this.number = number;
-    this.city = city;
-    this.street = street;
-    this.streetNumber = streetNumber;
+	@Id
+	@GeneratedValue
+	@Column(name = "USER_ID")
+	private Long id;
+	private String username;
+	@JsonSetter
+	private String password;
+	@OneToMany(mappedBy = "user")
+//	@JsonIgnoreProperties("user")
+	private Set<ProductsOrder> usersOrder;
+	@Transient
+	private final Collection<? extends GrantedAuthority> authorities;
+	private String name;
+	private String surname;
+	private String number;
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
-    authorities.add(new SimpleGrantedAuthority(role));
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    this.authorities = authorities;
-  }
+	private String city;
+	private String street;
+	private String streetNumber;
 
-  public String getName() {
-	return name;
-}
+	protected JwtUserDetails() {
+		this.id = null;
+		this.username = "";
+		this.password = "";
+		this.authorities = null;
+	}
 
-public void setName(String name) {
-	this.name = name;
-}
+//	public JwtUserDetails(Long id, String username, String password, String role, String name, String surname,
+//			String number, String city, String street, String streetNumber) {
+//		this.id = id;
+//		this.username = username;
+//		this.password = password;
+//		this.name = name;
+//		this.surname = surname;
+//		this.number = number;
+//		this.city = city;
+//		this.street = street;
+//		this.streetNumber = streetNumber;
+//
+//		List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
+//		authorities.add(new SimpleGrantedAuthority(role));
+//
+//		this.authorities = authorities;
+//	}
 
-public String getSurname() {
-	return surname;
-}
+	public String getName() {
+		return name;
+	}
 
-public void setSurname(String surname) {
-	this.surname = surname;
-}
-
-public String getNumber() {
-	return number;
-}
-
-public void setNumber(String number) {
-	this.number = number;
-}
-
-public String getCity() {
-	return city;
-}
-
-public void setCity(String city) {
-	this.city = city;
-}
-
-public String getStreet() {
-	return street;
-}
-
-public void setPassword(String password) {
+	public JwtUserDetails(Long id, String username, String password, Set<ProductsOrder> productsOrder,
+		Collection<? extends GrantedAuthority> authorities, String name, String surname, String number, String city,
+		String street, String streetNumber) {
+	super();
+	this.id = id;
+	this.username = username;
 	this.password = password;
-}
-
-public void setStreet(String street) {
+	this.usersOrder = productsOrder;
+	this.authorities = authorities;
+	this.name = name;
+	this.surname = surname;
+	this.number = number;
+	this.city = city;
 	this.street = street;
-}
-
-public String getStreetNumber() {
-	return streetNumber;
-}
-
-public void setStreetNumber(String streetNumber) {
 	this.streetNumber = streetNumber;
 }
 
-@JsonIgnore
-  public Long getId() {
-    return id;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  @Override
-  public String getUsername() {
-    return username;
-  }
+	public String getSurname() {
+		return surname;
+	}
 
-  @JsonIgnore
-  @Override
-  public boolean isAccountNonExpired() {
-    return true;
-  }
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
 
-  @JsonIgnore
-  @Override
-  public boolean isAccountNonLocked() {
-    return true;
-  }
+	public String getNumber() {
+		return number;
+	}
 
-  @JsonIgnore
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return true;
-  }
+	public void setNumber(String number) {
+		this.number = number;
+	}
 
-  @JsonIgnore
-  @Override
-  public String getPassword() {
-    return password;
-  }
+	public String getCity() {
+		return city;
+	}
 
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return authorities;
-  }
+	public void setCity(String city) {
+		this.city = city;
+	}
 
-  @Override
-  public boolean isEnabled() {
-    return true;
-  }
+	public String getStreet() {
+		return street;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getStreetNumber() {
+		return streetNumber;
+	}
+
+	public void setStreetNumber(String streetNumber) {
+		this.streetNumber = streetNumber;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	@Override
+	public String getUsername() {
+		return username;
+	}
+
+	@JsonIgnore
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@JsonIgnore
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@JsonIgnore
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@JsonIgnore
+	@Override
+	public String getPassword() {
+		return password;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return authorities;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+	@JsonIgnore
+	public Set<ProductsOrder> getUsersOrder() {
+		return usersOrder;
+	}
+
+	public void setUsersOrder(Set<ProductsOrder> usersOrder) {
+		this.usersOrder = usersOrder;
+	}
+
+	public static Long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 }
-
-
