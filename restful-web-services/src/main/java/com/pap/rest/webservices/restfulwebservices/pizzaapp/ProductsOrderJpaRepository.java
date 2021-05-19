@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProductsOrderJpaRepository extends JpaRepository<ProductsOrder, Long>{
+public interface ProductsOrderJpaRepository extends JpaRepository<ProductsOrder, Long> {
 	List<ProductsOrder> findByUserId(Long userId);
 }

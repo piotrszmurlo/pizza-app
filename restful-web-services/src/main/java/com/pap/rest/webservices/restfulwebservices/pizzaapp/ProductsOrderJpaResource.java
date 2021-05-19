@@ -50,7 +50,7 @@ public class ProductsOrderJpaResource {
 	@PutMapping("/jpa/user/{userId}/order/{orderId}")
 	public ResponseEntity<ProductsOrder> updateOrder(@PathVariable long userId, @PathVariable long orderId,
 			@RequestBody ProductsOrder productsOrder) {
-		ProductsOrder updatedProductsOrder = productsOrderRepository.save(productsOrder);
+		productsOrderRepository.save(productsOrder);
 		return new ResponseEntity<ProductsOrder>(productsOrder, HttpStatus.OK);
 	}
 }

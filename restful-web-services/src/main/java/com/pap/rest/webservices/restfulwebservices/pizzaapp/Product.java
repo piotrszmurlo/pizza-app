@@ -6,14 +6,16 @@ import javax.persistence.Id;
 
 @Entity
 public class Product {
-	
+
 	@Id
 	@GeneratedValue
 	private Long id;
 	private String name;
 	private int price;
+
 	protected Product() {
 	}
+
 	public Product(Long id, String name, int price) {
 		super();
 		this.id = id;
@@ -44,17 +46,17 @@ public class Product {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
-		if(this==obj)
+		if (this == obj)
 			return true;
-		if(obj == null)
+		if (obj == null)
 			return false;
-		if(getClass()!=obj.getClass())
+		if (getClass() != obj.getClass())
 			return false;
 		Product other = (Product) obj;
-		if(id != other.id)
+		if (id != other.id)
 			return false;
 		return true;
 	}
