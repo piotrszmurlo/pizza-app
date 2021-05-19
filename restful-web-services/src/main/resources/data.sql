@@ -65,8 +65,8 @@ values(10013, 'smakosz','$2a$10$0NVs/zo5fdOVgzXHf62raOy/nD/tg0Zh1.R7x1hjcETLFt52
 
 
 
-insert into products_order(order_id, is_completed, order_date, user_id)
-values(1010,false,'12-12-12', '10002');
+-- insert into products_order(order_id, is_completed, order_date, user_id)
+-- values(1010,false,'12-12-12', '10002');
 
 insert into products_order(order_id, is_completed, order_date, user_id)
 values(1011,true,'2021-5-18, 22:55:31','10002');
