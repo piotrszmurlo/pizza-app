@@ -43,10 +43,10 @@ class MenuComponent extends Component {
             {row.length > 1 && <td><ProductCard id={row[1].id} name={row[1].name} picture={IMG_PATH + row[1].name + '.png'} price={row[1].price} message={this.state.message}></ProductCard></td>}
             {row.length > 2 && <td><ProductCard id={row[2].id} name={row[2].name} picture={IMG_PATH + row[2].name + '.png'} price={row[2].price} message={this.state.message}></ProductCard></td>}
           </tr>
-        )})}
-        </tbody>
-        </table>
-        </center>
+          )})}
+      </tbody>
+      </table>
+      </center>
       </div>
     )
   }

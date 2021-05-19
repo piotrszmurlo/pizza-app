@@ -15,6 +15,9 @@ import WelcomeComponent from './WelcomeComponent.jsx'
 import ProfileComponent from './ProfileComponent.jsx'
 import LogoutComponent from './LogoutComponent.jsx'
 import FooterComponent from './FooterComponent.jsx'
+import './ProductCard.css'
+import './Basket.css'
+
 
 class PizzaApp extends Component {
   render() {
