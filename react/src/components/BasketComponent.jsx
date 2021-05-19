@@ -64,11 +64,11 @@ class BasketComponent extends Component {
     newOrder = allOrders[i]
     break
     }
-    this.state.products.forEach(product => {
+    this.state.products.map(product => {
       BasketDataService.createSoldProduct(username, {name: product.name, price: product.price, username: username, quantity: product.quantity, productsOrder: newOrder})
     })
   
-  this.state.products.forEach(product => {
+  this.state.products.map(product => {
     BasketDataService.deleteProduct(username, product.id)
     . then(
       response => {

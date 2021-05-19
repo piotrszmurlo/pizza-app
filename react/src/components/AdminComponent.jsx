@@ -73,7 +73,7 @@ toggleView(){
           </thead>
           <tbody>
             {
-              this.state.orders.slice(0).reverse().map(
+              this.state.orders.reverse().map(
                 order => !order.completed&&<>
                 <tr key={order.id}> 
                   <td>{order.id}</td>
@@ -102,7 +102,7 @@ toggleView(){
           </thead>
           <tbody>
             {
-              this.state.orders.slice(0).reverse().map(
+              this.state.orders.reverse().map(
                 order =>
                 <tr key={order.id}> 
                   <td>{order.id}</td>
