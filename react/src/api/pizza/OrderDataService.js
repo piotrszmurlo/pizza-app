@@ -17,5 +17,9 @@ class OrderDataService {
       }
       return null
   }
+
+  getOrdersforUser(userId){
+    return axios.get(`${JPA_API_URL}/user/${userId}/order`)
+    }
 }
 export default new OrderDataService()

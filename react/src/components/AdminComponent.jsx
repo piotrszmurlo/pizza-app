@@ -5,10 +5,12 @@ class AdminComponent extends Component {
   constructor(props){
     super(props)
     this.state = {
+      showAll: false,
       orders:[]
     }
-    this.getOrders = this.getOrders.bind(this);
+    this.getOrders = this.getOrders.bind(this)
     this.markOrderAsCompleted = this.markOrderAsCompleted.bind(this)
+    this.toggleView = this.toggleView.bind(this)
   }
 
   getOrders(){
@@ -17,7 +19,6 @@ class AdminComponent extends Component {
   }
 
   getTotal(order){
-    //order.id
     let total = 0
     for(let i = 0; i<order.products.length;i++){
       total += (order.products[i].price*order.products[i].quantity)
@@ -35,36 +36,87 @@ class AdminComponent extends Component {
     .then(response => this.getOrders())
   }
 
+  getProducts(order){
+    let productString = ''
+    for(let i = 0; i<order.products.length;i++){
+      if(i !== order.products.length - 1)
+      productString += (order.products[i].quantity) + ' ' +(order.products[i].name) + ', '
+      else{
+        productString += (order.products[i].quantity) + ' ' +(order.products[i].name)
+      }
+    }
+    return productString
+  }
+
+toggleView(){
+  let view = this.state.showAll
+  console.log(this.state.showAll)
+  this.setState({showAll: !view})
+}
+
   render(){
     return(
       <div>
-        <h1>Current order List</h1>
+        <h1>Order list</h1>
+        <button onClick={this.toggleView} className="btn btn-danger btn-sm">Toggle view of completed orders</button>
+        {this.state.showAll && 
         <table className="table table-striped">
           <thead>
             <tr>
              <th>Order number</th>
              <th>Username</th>
              <th>Date</th>
-             <th>Completed?</th>
+             <th>Products</th>
              <th>Total</th>
+             <th>Complete?</th>
             </tr>
           </thead>
           <tbody>
             {
-              this.state.orders.map(
+              this.state.orders.slice(0).reverse().map(
                 order => !order.completed&&<>
                 <tr key={order.id}> 
                   <td>{order.id}</td>
                   <td>{order.user.username}</td>
                   <td>{order.orderDate}</td>
-                  <td><button onClick={() => this.markOrderAsCompleted(order)} className="btn btn-danger btn-lg">Complete order</button></td>
+                  <td>{this.getProducts(order)}</td>
                   <td>{this.getTotal(order)}</td>
+                  <td><button onClick={() => this.markOrderAsCompleted(order)} className="btn btn-danger btn-sm">Complete order</button></td>
                 </tr></>
               )
               
             }
           </tbody>
-        </table>
+        </table>}
+        {!this.state.showAll && 
+        <table className="table table-striped">
+          <thead>
+            <tr>
+             <th>Order number</th>
+             <th>Username</th>
+             <th>Date</th>
+             <th>Products</th>
+             <th>Total</th>
+             <th>Complete?</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              this.state.orders.slice(0).reverse().map(
+                order =>
+                <tr key={order.id}> 
+                  <td>{order.id}</td>
+                  <td>{order.user.username}</td>
+                  <td>{order.orderDate}</td>
+                  <td>{this.getProducts(order)}</td>
+                  <td>{this.getTotal(order)}</td>
+                  <td>{!order.completed&&<button onClick={() => this.markOrderAsCompleted(order)} className="btn btn-danger btn-sm">Complete order</button>}{order.completed && <div className ='text-success'> Order completed</div>}</td>
+                </tr>
+              )
+              
+            }
+          </tbody>
+        </table>}
       </div>
 )}
 }

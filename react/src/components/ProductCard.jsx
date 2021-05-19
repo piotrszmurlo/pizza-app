@@ -38,7 +38,7 @@ class ProductCard extends Component {
   }
 
   moveToBasketClicked(product) {
-    if (AuthenticationService.isUserLoggedIn()){
+    if (AuthenticationService.isUserLoggedIn()&&!AuthenticationService.isLoggedInUserAdmin()){
       let username_ = AuthenticationService.getLoggedInUsername()
       let alreadyInBasket = false
       BasketDataService.retrieveBasket(username_)
@@ -48,9 +48,9 @@ class ProductCard extends Component {
             alreadyInBasket = true
             BasketDataService.deleteProduct(username_, response.data[i].id)
             BasketDataService.addToBasket(username_,{id: this.props.id, name: this.props.name, price: this.props.price, username: username_, quantity: response.data[i].quantity+1, orderId: -1})
+            .then(response=>{
             this.refreshCard()
-            break
-          }
+          })}
         }
         if(!alreadyInBasket) {
            BasketDataService.addToBasket(username_, {id: this.props.id, name: this.props.name, price: this.props.price, username: username_, quantity: 1, orderId: -1})
@@ -71,7 +71,7 @@ class ProductCard extends Component {
           <img src={require(`${this.props.picture}`).default} className='picture' alt='pizza'></img>
         </div>
           <h1 className='name'>{this.props.name}</h1>
-            <h1 className="price text-success mt-4">${this.props.price}</h1>
+            <h1 className="text-lg-center text-success mt-4">${this.props.price}</h1>
             {this.showQuantity()}{this.state.message}
             <button className="btn addbtn btn-danger" onClick={()=>this.moveToBasketClicked(this.props)} >Add to basket</button>
       </div>

@@ -85,10 +85,10 @@ class BasketComponent extends Component {
       for(let i = 0; i < response.data.length; i += 1){
         if(response.data[i].name === product.name){
           BasketDataService.deleteProduct(username_, response.data[i].id)
+          .then(response=>{this.refreshBasket()})
           BasketDataService.addToBasket(username_,{id: product.id, name: product.name, price: product.price, username: username_, quantity: response.data[i].quantity+1})
           .then(response=>
           this.refreshBasket())
-          break
         }}})
 }
 

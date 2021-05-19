@@ -106,8 +106,8 @@ values(10003, 'camberetti', 13, 2,'pepe', 1011);
 insert into sold_product(id,name,price,quantity,username, order_id)
 values(10004, 'margharita', 10, 1,'pepe', 1012);
 
-insert into sold_product(id,name,price,quantity,username, order_id)
-values(10005, 'hawaii', 13, 10,'pepe', 1012);
+--insert into sold_product(id,name,price,quantity,username, order_id)
+--values(10005, 'hawaii', 13, 10,'pepe', 1012);
 
 insert into sold_product(id,name,price,quantity,username, order_id)
 values(10006, 'margharita', 10, 1,'logotyp', 1013);
@@ -121,8 +121,8 @@ values(10008, 'hawaii', 13, 3,'Majoness', 1015);
 insert into sold_product(id,name,price,quantity,username, order_id)
 values(10009, 'capriciosa', 10, 4,'Hazardzista23', 1016);
 
-insert into sold_product(id,name,price,quantity,username, order_id)
-values(10010, 'greek', 13, 6,'Hazardzista23', 1016);
+--insert into sold_product(id,name,price,quantity,username, order_id)
+--values(10010, 'greek', 13, 6,'Hazardzista23', 1016);
 
 insert into sold_product(id,name,price,quantity,username, order_id)
 values(10011, 'margharita', 10, 4,'Spaslak333', 1017);
