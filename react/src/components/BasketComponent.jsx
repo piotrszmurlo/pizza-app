@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {IMG_PATH} from '../constants.js'
-import {Link} from 'react-router-dom';
 import AuthenticationService from './AuthenticationService.js'
 import BasketDataService from '../api/pizza/BasketDataService.js'
 
@@ -61,15 +60,15 @@ class BasketComponent extends Component {
   .then(response3=> {
     allOrders=response3.data
     for(let i = 0;i<allOrders.length;i+=1)
-    if (allOrders[i].completed==false){
+    if (allOrders[i].completed===false){
     newOrder = allOrders[i]
     break
     }
-    this.state.products.map(product=>{
+    this.state.products.forEach(product => {
       BasketDataService.createSoldProduct(username, {name: product.name, price: product.price, username: username, quantity: product.quantity, productsOrder: newOrder})
     })
   
-  this.state.products.map(product=>{
+  this.state.products.forEach(product => {
     BasketDataService.deleteProduct(username, product.id)
     . then(
       response => {

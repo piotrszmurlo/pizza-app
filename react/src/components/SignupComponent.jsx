@@ -23,9 +23,10 @@ class SignupComponent extends Component {
   }
   
   signupClicked() {
-    // if(this.state.username.includes("admin")){
-    //   this.setState({wannaBeAdmin: true})
-    // }
+    if(this.state.username.includes("admin")){
+      this.setState({wannaBeAdmin: true})
+    }
+    else{
     if (this.state.username === '' || this.state.password === '' || this.state.name === '' || this.state.surname === '' || this.state.number === '' || this.state.city === '' || this.state.street === '' || this.state.streetNumber === ''){
       this.setState({badInput: true})
       return
@@ -34,7 +35,7 @@ class SignupComponent extends Component {
       this.setState({badInput: false})
       SignupDataService.doesUserExist(this.state.username)
       .then(response => {
-        if(response.data != ''){
+        if(response.data !== ''){
           this.setState({userAlreadyExists: true})
         }
         else{
@@ -45,7 +46,7 @@ class SignupComponent extends Component {
           .then((response) => {
             AuthenticationService.registerSuccesfulLoginForJwt(this.state.username, response.data.token);
             this.props.history.push(`/welcome/${this.state.username}`)
-      })})}})}
+      })})}})}}
   }
 
   handleRegistration(event) {

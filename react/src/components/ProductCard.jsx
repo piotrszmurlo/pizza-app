@@ -29,7 +29,7 @@ class ProductCard extends Component {
   }
 
   showQuantity() {
-    if (this.state.quantity==0){
+    if (this.state.quantity===0){
       return <td></td>
     }
     else {

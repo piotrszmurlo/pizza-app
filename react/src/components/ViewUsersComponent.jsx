@@ -37,7 +37,7 @@ class ViewUsersComponent extends Component {
           </thead>
           <tbody>
             {
-              this.state.users.map(
+              this.state.users.forEach(
                 user => {if(user.username !== 'guest' && user.username !== 'admin' ){
                   return(
                 <tr key={user.id}> 

@@ -2,11 +2,6 @@ import React, {Component} from 'react'
 import pizzaiolo from './images/pizzaiolo.jpg'
 
 class WelcomeComponent extends Component {
-  
-  constructor(props){
-    super(props)
-  }
-
   render() {
     return(
       <div>

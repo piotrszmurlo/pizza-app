@@ -17,4 +17,4 @@ class MenuDataService {
   }
   
 }
-export default new MenuDataService
+export default new MenuDataService()
