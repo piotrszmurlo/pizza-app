@@ -20,14 +20,13 @@ class SignupDataService {
   registerNewUser(name, details){
     return axios.post(`${JPA_API_URL}/user/${name}`, details, {headers: {authorization: GUEST_TOKEN}});
   }
-  // deleteUser(name){
+
+  // getUser(username){
   //   if(AuthenticationService.isLoggedInUserAdmin()){
-  //     return axios.delete(`${JPA_API_URL}/user/${name}`)
-  //   }
-  //   else {
-  //     return null
+  //     return axios.get(`${JPA_API_URL}/user/username`)
   //   }
   // }
+
   deleteUser(id){
     if(AuthenticationService.isLoggedInUserAdmin()){
       return axios.delete(`${JPA_API_URL}/user/${id}`)
