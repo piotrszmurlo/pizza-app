@@ -6,12 +6,6 @@ class SignupDataService {
   
   doesUserExist(username){
     return axios.get(`${JPA_API_URL}/user/${username}`, {headers: {authorization: GUEST_TOKEN}})
-    // .then(response => {
-    //     if(response.data == ''){
-    //       return false
-    //     }
-    //     return true
-    // })
   }
   
   getUsers(){
@@ -25,6 +19,22 @@ class SignupDataService {
 
   registerNewUser(name, details){
     return axios.post(`${JPA_API_URL}/user/${name}`, details, {headers: {authorization: GUEST_TOKEN}});
+  }
+  // deleteUser(name){
+  //   if(AuthenticationService.isLoggedInUserAdmin()){
+  //     return axios.delete(`${JPA_API_URL}/user/${name}`)
+  //   }
+  //   else {
+  //     return null
+  //   }
+  // }
+  deleteUser(id){
+    if(AuthenticationService.isLoggedInUserAdmin()){
+      return axios.delete(`${JPA_API_URL}/user/${id}`)
+    }
+    else {
+      return null
+    }
   }
 }
 export default new SignupDataService()

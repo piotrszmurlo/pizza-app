@@ -18,7 +18,7 @@ public class ProductsOrder {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "ORDER_ID")
+	@Column(name = "ORDER_ID", nullable = true)
 	private Long id;
 	@OneToMany(mappedBy = "productsOrder")
 	@JsonIgnoreProperties("productsOrder")
@@ -26,7 +26,7 @@ public class ProductsOrder {
 	private boolean isCompleted;
 	private String orderDate;
 	@ManyToOne(targetEntity = com.pap.rest.webservices.restfulwebservices.jwt.JwtUserDetails.class)
-	@JoinColumn(name = "USER_ID", nullable = false)
+	@JoinColumn(name = "USER_ID", nullable = true)
 	
 	private JwtUserDetails user;
 	

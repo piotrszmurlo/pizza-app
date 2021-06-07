@@ -28,8 +28,6 @@ values(10009, 'frutti di mare', 15);
 insert into product(id,name,price)
 values(10010, 'quattro formaggi', 15);
 
-
-
 insert into jwt_user_details(user_id, username, password, name, surname, number,city, street, street_number)
 values(10002, 'pepe','$2a$10$3zHzb.Npv1hfZbLEU5qsdOju/tk2je6W6PnNnY.c1ujWPcZh4PL6e', 'Piotr', 'Zagorski', '123123123', 'Grodno', 'Bialostocka', '12');
 
@@ -65,8 +63,8 @@ values(10013, 'smakosz','$2a$10$0NVs/zo5fdOVgzXHf62raOy/nD/tg0Zh1.R7x1hjcETLFt52
 
 
 
--- insert into products_order(order_id, is_completed, order_date, user_id)
--- values(1010,false,'12-12-12', '10002');
+ insert into products_order(order_id, is_completed, order_date, user_id)
+ values(1010,false,'2021-5-18, 21:52:31', '10002');
 
 insert into products_order(order_id, is_completed, order_date, user_id)
 values(1011,true,'2021-5-18, 22:55:31','10002');

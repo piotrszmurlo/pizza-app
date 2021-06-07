@@ -16,6 +16,10 @@ class ViewUsersComponent extends Component {
     })
   }
 
+  deleteUser(username){
+    SignupDataService.deleteUser(username).then(() => this.getAllUsers())
+  }
+
   componentDidMount(){
     this.getAllUsers()
   }
@@ -47,6 +51,7 @@ class ViewUsersComponent extends Component {
                   <td>{user.surname}</td>
                   <td>{user.number}</td>
                   <td>{user.city}, {user.street} {user.streetNumber}</td>
+                  <td><button onClick={() => this.deleteUser(user.id)} className="btn btn-danger btn-sm">Delete user</button></td>
                 </tr>)}}
               )
               

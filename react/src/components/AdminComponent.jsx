@@ -11,6 +11,7 @@ class AdminComponent extends Component {
     this.getOrders = this.getOrders.bind(this)
     this.markOrderAsCompleted = this.markOrderAsCompleted.bind(this)
     this.toggleView = this.toggleView.bind(this)
+    this.getUsername = this.getUsername.bind(this)
   }
 
   getOrders(){
@@ -54,6 +55,15 @@ toggleView(){
   this.setState({showAll: !view})
 }
 
+getUsername(user){
+  if (user != null){
+    return user.username
+  }
+  else{
+    return 'Deleted user'
+  }
+}
+
   render(){
     return(
       <div>
@@ -77,7 +87,7 @@ toggleView(){
                 order => !order.completed&&<>
                 <tr key={order.id}> 
                   <td>{order.id}</td>
-                  <td>{order.user.username}</td>
+                  <td>{this.getUsername(order.user)}</td>
                   <td>{order.orderDate}</td>
                   <td>{this.getProducts(order)}</td>
                   <td>{this.getTotal(order)}</td>
@@ -106,7 +116,7 @@ toggleView(){
                 order =>
                 <tr key={order.id}> 
                   <td>{order.id}</td>
-                  <td>{order.user.username}</td>
+                  <td>{this.getUsername(order.user)}</td>
                   <td>{order.orderDate}</td>
                   <td>{this.getProducts(order)}</td>
                   <td>{this.getTotal(order)}</td>
