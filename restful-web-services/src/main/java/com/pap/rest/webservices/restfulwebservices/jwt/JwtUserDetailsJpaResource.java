@@ -59,6 +59,7 @@ public class JwtUserDetailsJpaResource {
 //			for(SoldProduct product : products) {
 //				product.setProductsOrder(null);
 //			}
+			order.setCompleted(true);
 			order.setUser(null);
 		}
 		jwtUserDetailsJpaRepository.deleteById(id);
